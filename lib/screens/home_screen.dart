@@ -16,12 +16,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
+      body: Container(
+        child: IndexedStack(
         index: _selectedIndex,
         children: <Widget>[
           CategoriasScreen(),
           FichasScreen(),
         ],
+      ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -32,10 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.art_track),
             title: Text('Fichas'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border),
-            title: Text('Marcadores'),
           )
         ],
         currentIndex: _selectedIndex,

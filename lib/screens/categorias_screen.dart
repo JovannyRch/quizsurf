@@ -3,15 +3,41 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class CategoriasScreen extends StatelessWidget {
-  const CategoriasScreen({Key key}) : super(key: key);
+  double alto;
+  double ancho;
+
+List<Map<String,dynamic>> categorias = [
+    {
+      'titulo': 'Matemáticas',
+      'color1': Color.fromRGBO(241, 142, 17, 1.0),
+      'color2': Color.fromRGBO(236, 98, 18, 1.0),
+    },
+    {
+      'titulo': 'Geografía',
+      'color1': Color.fromRGBO(0, 142, 17, 1.0),
+      'color2': Color.fromRGBO(0, 98, 18, 1.0),
+    },
+    {
+      'titulo': 'Historia',
+      'color1': Color.fromRGBO(241, 0, 17, 1.0),
+      'color2': Color.fromRGBO(236, 0, 18, 1.0),
+    },
+    {
+      'titulo': 'Inglés',
+      'color1': Color.fromRGBO(120, 142, 0, 1.0),
+      'color2': Color.fromRGBO(100, 98, 0, 1.0),
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
+    this.alto = MediaQuery.of(context).size.height;
+    this.ancho = MediaQuery.of(context).size.width;
     final caja = Transform.rotate(
       angle: -pi / 2.8,
       child: Container(
-        width: 250,
-        height: 250,
+        width: this.ancho*.5,
+        height: this.alto*.5,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(70.0),
           color: Colors.grey.shade200,
@@ -39,8 +65,8 @@ class CategoriasScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            height: 50.0,
+          /*Container(
+            height: this.alto*0.08,
             padding: EdgeInsets.all(10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -48,7 +74,7 @@ class CategoriasScreen extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.menu),
                   onPressed: () {},
-                ),
+                ), 
                 Expanded(
                   child: Container(),
                 ),
@@ -57,45 +83,49 @@ class CategoriasScreen extends StatelessWidget {
                 )
               ],
             ),
-          ),
+          ),*/
           SizedBox(
-            height: 30.0,
+            height: this.alto*0.02
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                /* Text(
                   "Hola Daniela",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.blue.shade900,
                   ),
-                ),
+                ), 
                 SizedBox(
                   height: 10.0,
-                ),
+                ),*/
                 Text(
-                  "¿Lista para aprender?",
+                  "¿List@ para aprender?",
                   style: TextStyle(
-                    fontSize: 40.0,
+                    fontSize: this.alto*0.04,
                     color: Colors.blue.shade900,
                   ),
                   textAlign: TextAlign.start,
                 ),
                 SizedBox(
-                  height: 30.0,
+                  height: alto*0.035,
                 ),
                 CarouselSlider(
-                  height: 400.0,
+                  height: alto*0.5,
                   viewportFraction: 0.9,
-                  items: [1, 2, 3, 4, 5].map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return CardMateria(context: context);
-                      },
+                  items: categorias.map((categoria) {
+                    
+                    var materia = categoria['titulo'];
+                    Color color1 = categoria['color1'];
+                    Color color2 = categoria['color2'];
+                    return CardMateria(
+                      materia: materia,
+                      color1: color1,
+                      color2: color2
                     );
                   }).toList(),
                 ),
@@ -103,7 +133,7 @@ class CategoriasScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: alto*0.02,
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -134,22 +164,24 @@ class CategoriasScreen extends StatelessWidget {
 }
 
 class CardMateria extends StatelessWidget {
-  const CardMateria({
-    Key key,
-    @required this.context,
-  }) : super(key: key);
-
-  final BuildContext context;
+ 
+  CardMateria({this.materia, this.color1, this.color2});
+  final String materia;
+  final Color color1;
+  final Color color2;
+  
 
   @override
   Widget build(BuildContext context) {
+    double alto = MediaQuery.of(context).size.height;
+    double ancho = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.0),
       height: MediaQuery.of(context).size.height * 0.5,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(241, 142, 17, 1.0).withOpacity(0.3),
+            color: this.color1.withOpacity(0.3),
             spreadRadius: 2,
             blurRadius: 1,
             offset: Offset(5, 0), // changes position of shadow
@@ -160,8 +192,8 @@ class CardMateria extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromRGBO(241, 142, 17, 1.0),
-              Color.fromRGBO(236, 98, 18, 1.0),
+              this.color1,
+              this.color2
             ]),
       ),
       child: Container(
@@ -171,23 +203,23 @@ class CardMateria extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Matemáticas',
+              materia,
               style: TextStyle(
-                fontSize: 40.0,
+                fontSize: alto*0.05,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             SizedBox(
-              height: 30.0,
+              height: alto*0.03,
             ),
             RaisedButton(
               color: Colors.grey.shade200,
               child: Container(
-                width: 140.0,
+                width: MediaQuery.of(context).size.width*.50,
+                height: alto*0.1,
                 padding: EdgeInsets.symmetric(
-                  vertical: 20.0,
-                  horizontal: 10.0,
+                  vertical: alto*0.03,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -195,8 +227,8 @@ class CardMateria extends StatelessWidget {
                     Text(
                       'INICIAR',
                       style: TextStyle(
-                        color: Color.fromRGBO(236, 98, 18, 1.0),
-                        fontSize: 22.0,
+                        color: this.color1,
+                        fontSize: alto*0.03,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -208,7 +240,7 @@ class CardMateria extends StatelessWidget {
                         Icons.arrow_forward,
                         color: Colors.grey.shade200,
                       ),
-                      backgroundColor: Color.fromRGBO(236, 98, 18, 1.0),
+                      backgroundColor: this.color1,
                     )
                   ],
                 ),
