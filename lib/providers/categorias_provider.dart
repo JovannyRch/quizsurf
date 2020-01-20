@@ -1,24 +1,21 @@
 import 'dart:io';
 
-import 'package:quizsurf/models/fichas_model.dart';
+import 'package:quizsurf/models/categorias_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
 
-class FichasProvider {
+class CategoriasProvider {
   static Database _database;
-  static final FichasProvider db = FichasProvider._();
-
+  static final CategoriasProvider db = CategoriasProvider._();
+  String tabla = "categorias";
   String dbName = "quizsurf2";
-  String tabla = "fichas";
-  FichasProvider._();
+  CategoriasProvider._() {}
 
   Future<Database> get database async {
-    if (_database != null) {
-      return _database;
-    }
-
+   
+    if (_database != null) return _database;
     _database = await initDB();
     return _database;
   }
@@ -28,8 +25,15 @@ class FichasProvider {
     String path = join(documentsDirectory.path, '$dbName.db');
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
-        await db.execute(
+      await db.execute(
         "CREATE TABLE $tabla"
+        "(id INTEGER PRIMARY KEY,"
+        "nombre text,"
+        "descripcion text"
+        ")",
+      );
+       await db.execute(
+        "CREATE TABLE fichas"
         "(id INTEGER PRIMARY KEY,"
         "tema text,"
         "concepto text,"
@@ -40,40 +44,34 @@ class FichasProvider {
     });
   }
 
-  insert(FichasModel scan) async {
+  insert(CategoriasModel scan) async {
     final db = await database;
     return await db.insert(tabla, scan.toJson());
   }
 
-  Future<FichasModel> getById(int id) async {
+  Future<CategoriasModel> getById(int id) async {
     final db = await database;
     final res = await db.query(tabla, where: 'id = ?', whereArgs: [id]);
-    return res.isNotEmpty ? FichasModel.fromJson(res.first) : null;
+    return res.isNotEmpty ? CategoriasModel.fromJson(res.first) : null;
   }
 
-  Future<FichasModel> getByIdCategoria(int idCategoria) async {
-    final db = await database;
-    final res = await db.query(tabla, where: 'id_categoria = ?', whereArgs: [idCategoria]);
-    return res.isNotEmpty ? FichasModel.fromJson(res.first) : null;
-  }
-
-  Future<List<FichasModel>> getAll() async {
+  Future<List<CategoriasModel>> getAll() async {
     final db = await database;
     final res = await db.query(tabla);
     return res.isEmpty
         ? []
-        : res.map((registro) => FichasModel.fromJson(registro)).toList();
+        : res.map((registro) => CategoriasModel.fromJson(registro)).toList();
   }
 
-  Future<List<FichasModel>> getBy(String campo, int valor) async {
+  Future<List<CategoriasModel>> getBy(String campo, String valor) async {
     final db = await database;
-    final res = await db.rawQuery("SELECT * from $tabla where $campo = $valor");
+    final res = await db.rawQuery("SELECT * from $tabla where $campo = '$valor'");
     return res.isEmpty
         ? []
-        : res.map((registro) => FichasModel.fromJson(registro)).toList();
+        : res.map((registro) => CategoriasModel.fromJson(registro)).toList();
   }
 
-  Future<int> update(FichasModel tajeta) async {
+  Future<int> update(CategoriasModel tajeta) async {
     final db = await database;
     final res = await db
         .update(tabla, tajeta.toJson(), where: 'id = ?', whereArgs: [tajeta.id]);

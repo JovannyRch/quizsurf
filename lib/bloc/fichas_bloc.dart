@@ -8,11 +8,14 @@ class FichasBloc {
   static final FichasBloc _singleton = FichasBloc._internal();
 
   factory FichasBloc() => _singleton;
+  int id_categoria;
 
   FichasBloc._internal() {
-    //Obtener los Scans de la base de datos
-    getDatos();
+    //Obtener los datos de la base de datos
+    //getDatos();
   }
+
+  
 
   final _dataController = StreamController<List<FichasModel>>.broadcast();
  
@@ -27,7 +30,17 @@ class FichasBloc {
   }
 
   getDatos() async {
-    _dataController.sink.add(await FichasProvider.db.getAll());
+    if(this.id_categoria == null){
+        _dataController.sink.add(await FichasProvider.db.getAll());
+    }else{
+
+        _dataController.sink.add(await FichasProvider.db.getBy('id_categoria', this.id_categoria));
+    }
+   
+  }
+
+  getDatosById(int fkId ) async{
+    _dataController.sink.add(await FichasProvider.db.getBy('id_categoria', fkId));
   }
 
   deleteData(int id) async {

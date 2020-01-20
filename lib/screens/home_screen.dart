@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:quizsurf/screens/categorias_fichas_screen.dart';
 import 'package:quizsurf/screens/categorias_screen.dart';
 import 'package:quizsurf/screens/fichas_inicio_screen.dart';
 
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
         index: _selectedIndex,
         children: <Widget>[
           CategoriasScreen(),
-          FichasScreen(),
+          CategoriasFichasScreen(),
         ],
       ),
       ),

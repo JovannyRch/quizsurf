@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quizsurf/screens/add_categoria_screen.dart';
+import 'package:quizsurf/screens/fichas_inicio_screen.dart';
 import 'package:quizsurf/screens/home_screen.dart';
 import 'package:quizsurf/screens/quiz_screen.dart';
 
@@ -14,6 +16,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomeScreen(),
         '/quiz': (context) => QuizScreen(),
+        '/fichas': (context) => FichasScreen(),
+        '/categoriaForm': (context) => AddCategoriaScreen(),
       },
     );
   }
