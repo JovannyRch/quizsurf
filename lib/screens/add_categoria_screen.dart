@@ -41,7 +41,7 @@ class _AddCategoriaScreenState extends State<AddCategoriaScreen> {
                 ),
               ),
               textAlign: TextAlign.center,
-              onSubmitted: (valor) {
+              onChanged: (valor) {
                 print(valor);
                 this.titulo = valor;
               },
@@ -58,7 +58,7 @@ class _AddCategoriaScreenState extends State<AddCategoriaScreen> {
                   )),
               style: TextStyle(),
               textAlign: TextAlign.center,
-              onSubmitted: (valor) {
+              onChanged: (valor) {
                 this.descripcion = valor;
               },
             ),
@@ -72,6 +72,8 @@ class _AddCategoriaScreenState extends State<AddCategoriaScreen> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
+                  print(this.titulo);
+                  print(this.descripcion);
                   this.categoriasBloc.create(new CategoriasModel(
                       nombre: this.titulo, descripcion: this.descripcion));
                   Navigator.pop(context);

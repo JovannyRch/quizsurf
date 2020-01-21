@@ -43,8 +43,7 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
                 ),
               ),
               textAlign: TextAlign.center,
-              onSubmitted: (valor) {
-                print(valor);
+              onChanged: (valor) {
                 this.termino = valor;
               },
             ),
@@ -60,7 +59,7 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
                   )),
               style: TextStyle(),
               textAlign: TextAlign.center,
-              onSubmitted: (valor) {
+              onChanged: (valor) {
                 this.definicion = valor;
               },
             ),

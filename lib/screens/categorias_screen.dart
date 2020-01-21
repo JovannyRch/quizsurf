@@ -6,7 +6,7 @@ class CategoriasScreen extends StatelessWidget {
   double alto;
   double ancho;
 
-List<Map<String,dynamic>> categorias = [
+  List<Map<String, dynamic>> categorias = [
     {
       'titulo': 'Matemáticas',
       'color1': Color.fromRGBO(241, 142, 17, 1.0),
@@ -36,8 +36,8 @@ List<Map<String,dynamic>> categorias = [
     final caja = Transform.rotate(
       angle: -pi / 2.8,
       child: Container(
-        width: this.ancho*.5,
-        height: this.alto*.5,
+        width: this.ancho * .5,
+        height: this.alto * .5,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(70.0),
           color: Colors.grey.shade200,
@@ -84,9 +84,7 @@ List<Map<String,dynamic>> categorias = [
               ],
             ),
           ),*/
-          SizedBox(
-            height: this.alto*0.02
-          ),
+          SizedBox(height: this.alto * 0.02),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
@@ -106,34 +104,30 @@ List<Map<String,dynamic>> categorias = [
                 Text(
                   "¿List@ para aprender?",
                   style: TextStyle(
-                    fontSize: this.alto*0.04,
+                    fontSize: this.alto * 0.04,
                     color: Colors.blue.shade900,
                   ),
                   textAlign: TextAlign.start,
                 ),
                 SizedBox(
-                  height: alto*0.035,
+                  height: alto * 0.035,
                 ),
                 CarouselSlider(
-                  height: alto*0.5,
+                  height: alto * 0.5,
                   viewportFraction: 0.9,
                   items: categorias.map((categoria) {
-                    
                     var materia = categoria['titulo'];
                     Color color1 = categoria['color1'];
                     Color color2 = categoria['color2'];
                     return CardMateria(
-                      materia: materia,
-                      color1: color1,
-                      color2: color2
-                    );
+                        materia: materia, color1: color1, color2: color2);
                   }).toList(),
                 ),
               ],
             ),
           ),
           SizedBox(
-            height: alto*0.02,
+            height: alto * 0.02,
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -164,12 +158,10 @@ List<Map<String,dynamic>> categorias = [
 }
 
 class CardMateria extends StatelessWidget {
- 
   CardMateria({this.materia, this.color1, this.color2});
   final String materia;
   final Color color1;
   final Color color2;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -191,10 +183,7 @@ class CardMateria extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              this.color1,
-              this.color2
-            ]),
+            colors: [this.color1, this.color2]),
       ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -205,21 +194,21 @@ class CardMateria extends StatelessWidget {
             Text(
               materia,
               style: TextStyle(
-                fontSize: alto*0.05,
+                fontSize: alto * 0.05,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             SizedBox(
-              height: alto*0.03,
+              height: alto * 0.03,
             ),
             RaisedButton(
               color: Colors.grey.shade200,
               child: Container(
-                width: MediaQuery.of(context).size.width*.50,
-                height: alto*0.1,
+                width: MediaQuery.of(context).size.width * .50,
+                height: alto * 0.1,
                 padding: EdgeInsets.symmetric(
-                  vertical: alto*0.03,
+                  vertical: alto * 0.03,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -228,7 +217,7 @@ class CardMateria extends StatelessWidget {
                       'INICIAR',
                       style: TextStyle(
                         color: this.color1,
-                        fontSize: alto*0.03,
+                        fontSize: alto * 0.03,
                         fontWeight: FontWeight.w900,
                       ),
                     ),

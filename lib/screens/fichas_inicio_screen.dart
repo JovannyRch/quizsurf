@@ -27,6 +27,12 @@ class FichasScreen extends StatelessWidget {
     ancho = MediaQuery.of(context).size.width;
     alto = MediaQuery.of(context).size.height;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          this.showModal(context);
+        },
+        child: Icon(Icons.add),
+      ),
       appBar: AppBar(
         title: Hero(
           tag: '${categoria.id}',
@@ -76,12 +82,6 @@ class FichasScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  this.showModal(context);
-                },
-              )
             ],
           );
         }
@@ -108,6 +108,7 @@ class FichasScreen extends StatelessWidget {
               ],
             );
           FichasModel ficha = fichas[index - 1];
+          print(ficha);
           return Container(
             margin: EdgeInsets.only(bottom: 10.0),
             child: FlipCard(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:quizsurf/bloc/categorias_bloc.dart';
 import 'package:quizsurf/models/categorias_model.dart';
-import 'package:quizsurf/screens/add_categoria_screen.dart';
 
 class CategoriasFichasScreen extends StatelessWidget {
   CategoriasBloc _categoriasBloc = new CategoriasBloc();
@@ -52,45 +51,52 @@ class CategoriasFichasScreen extends StatelessWidget {
             return SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  if (index == 0)
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.add),
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => AddCategoriaScreen(),
-                            );
-                          },
-                        ),
-                        SizedBox(
-                          width: 10.0,
-                        )
-                      ],
-                    );
-
-                  CategoriasModel categoria = snapshot.data[index - 1];
+                  CategoriasModel categoria = snapshot.data[index];
+                  print(categoria.nombre);
                   return Dismissible(
                     key: UniqueKey(),
                     child: ListTile(
-                      title: Hero(
-                        tag: '${categoria.id}',
-                        child: Text(categoria.nombre),
-                      ),
+                      title: Text(categoria.nombre),
                       trailing: Icon(Icons.arrow_forward_ios),
                       onTap: () {
                         Navigator.pushNamed(context, '/fichas',
-                            arguments: {'categoria': snapshot.data[index - 1]});
+                            arguments: {'categoria': categoria});
                       },
                     ),
+                    confirmDismiss: (DismissDirection direction) async {
+                      final bool res = await showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text("Confirmar"),
+                            content: const Text("Eliminar la guía de estudio "),
+                            actions: <Widget>[
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(true);
+                                    this
+                                        ._categoriasBloc
+                                        .deleteData(categoria.id);
+                                  },
+                                  child: const Text("ELIMINAR")),
+                              FlatButton(
+                                onPressed: () =>
+                                    Navigator.of(context).pop(false),
+                                child: const Text("CANCELAR"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                     onDismissed: (index) {
-                      print(index);
+                      print("Eliminar");
+                      print(categoria.id);
+                      //this._categoriasBloc.deleteData(categoria.id);
                     },
                   );
                 },
-                childCount: snapshot.hasData ? snapshot.data.length + 1 : 0,
+                childCount: snapshot.hasData ? snapshot.data.length : 0,
               ),
             );
           },

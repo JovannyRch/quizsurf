@@ -35,13 +35,11 @@ class _QuizScreenState extends State<QuizScreen> {
     this.width = MediaQuery.of(context).size.width;
     this.height = MediaQuery.of(context).size.height;
     return Scaffold(
-     
       backgroundColor: Color(0xFF252C4A),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-             
               barraProgreso(context),
               infoPregunta(),
               SizedBox(
@@ -50,18 +48,21 @@ class _QuizScreenState extends State<QuizScreen> {
               preguntaBuilder(),
               opcionesBuilder(),
               botonSiguiente(),
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   IconButton(
-                icon: CircleAvatar(
-                  backgroundColor: Colors.red,
-                  child: Icon(Icons.close, color: Colors.white,),
-                ),
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-              )
+                    icon: CircleAvatar(
+                      backgroundColor: Colors.red,
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  )
                 ],
               ),
             ],
@@ -82,14 +83,14 @@ class _QuizScreenState extends State<QuizScreen> {
       },
       child: Container(
         padding: EdgeInsets.all(
-          this.height*0.03,
+          this.height * 0.03,
         ),
         child: Text(
           "Siguiente",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: this.height*0.03,
+            fontSize: this.height * 0.03,
           ),
         ),
       ),
@@ -122,12 +123,12 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget preguntaBuilder() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30.0),
-      height: this.height*0.13,
+      height: this.height * 0.13,
       child: Text(
         '¿Cúal es una palabra esdrújula?',
         style: TextStyle(
           color: Colors.white,
-          fontSize: this.height*0.04,
+          fontSize: this.height * 0.04,
           fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.center,
@@ -137,7 +138,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   Container barraProgreso(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: height*0.02, left: width*0.08),
+      padding: EdgeInsets.only(top: height * 0.02, left: width * 0.08),
       child: LinearPercentIndicator(
         width: MediaQuery.of(context).size.width - 50,
         lineHeight: 20.0,
@@ -160,7 +161,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return Container(
       padding: EdgeInsets.only(
         left: 30.0,
-        top: this.height*0.03,
+        top: this.height * 0.03,
       ),
       child: Row(
         children: <Widget>[
@@ -168,7 +169,7 @@ class _QuizScreenState extends State<QuizScreen> {
             'Pregunta ${preguntaActual.toString()}',
             style: TextStyle(
               color: Color(0xff8D94BB),
-              fontSize: this.height*0.035,
+              fontSize: this.height * 0.035,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -176,7 +177,7 @@ class _QuizScreenState extends State<QuizScreen> {
             '/ ${this.total.toString()}',
             style: TextStyle(
               color: Color(0xff8D94BB),
-              fontSize: this.height*0.026,
+              fontSize: this.height * 0.026,
               fontWeight: FontWeight.bold,
             ),
           )
@@ -212,7 +213,7 @@ class _OpcionWidgetState extends State<OpcionWidget> {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Container(
-          margin: EdgeInsets.only(bottom: alto*0.02),
+          margin: EdgeInsets.only(bottom: alto * 0.02),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               border: Border.all(
@@ -222,10 +223,7 @@ class _OpcionWidgetState extends State<OpcionWidget> {
           child: ListTile(
             title: Text(
               widget.texto,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: alto*0.03
-              ),
+              style: TextStyle(color: Colors.white, fontSize: alto * 0.03),
             ),
             trailing: getIcon(widget.estado),
           ),
