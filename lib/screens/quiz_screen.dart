@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'dart:async';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class QuizScreen extends StatefulWidget {
   QuizScreen({Key key}) : super(key: key);
@@ -12,20 +13,70 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int segundos = 50;
   final int tiempoInicial = 15;
-  int preguntaActual = 1;
+  int preguntaActual = 0;
   int total = 10;
   double width;
   double height;
+  int contadorSegundos = 0;
+  int indexPage = 0;
+  List<bool> historial = [];
+  List preguntas = [
+    {
+      'pregunta': 'Capital de Chile',
+      'opciones': [
+        {'texto': 'Santiago', 'isCorrect': true},
+        {'texto': 'Buenos Aires', 'isCorrect': false},
+        {'texto': 'Asunción', 'isCorrect': false},
+      ]
+    },
+    {
+      'pregunta': 'Capital de China',
+      'opciones': [
+        {'texto': 'Seul', 'isCorrect': false},
+        {'texto': 'Tokio', 'isCorrect': false},
+        {'texto': 'Pekin', 'isCorrect': true},
+      ]
+    },
+    {
+      'pregunta': 'Capital de Canada',
+      'opciones': [
+        {'texto': 'Otawa', 'isCorrect': false},
+        {'texto': 'Quebec', 'isCorrect': true},
+        {'texto': 'Washington', 'isCorrect': false},
+      ]
+    }
+  ];
   @override
   void initState() {
     super.initState();
     segundos = tiempoInicial;
     Timer.periodic(new Duration(seconds: 1), (timer) {
       setState(() {
+        contadorSegundos++;
         segundos--;
+        if (contadorSegundos == 3) {
+          this.indexPage = 1;
+        }
       });
+
       if (segundos == 0) {
-        segundos = tiempoInicial;
+        timer.cancel();
+        Alert(
+          context: context,
+          type: AlertType.warning,
+          title: "TIEMPO AGOTADO",
+          desc: "Sigue estudiando y preparandote :)",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "OK",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+            )
+          ],
+        ).show();
       }
     });
   }
@@ -37,37 +88,62 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       backgroundColor: Color(0xFF252C4A),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
+        child: IndexedStack(
+          index: this.indexPage,
+          children: <Widget>[
+            pantallaInicio(context),
+            cuerpoJuego(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget pantallaInicio(BuildContext context) {
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text(
+            this.contadorSegundos.toString(),
+            style: TextStyle(color: Colors.white, fontSize: 50.0),
+          ),
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView cuerpoJuego(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          barraProgreso(context),
+          infoPregunta(),
+          SizedBox(
+            height: 10.0,
+          ),
+          preguntaBuilder(this.preguntas[this.preguntaActual]),
+          opcionesBuilder(this.preguntas[this.preguntaActual]['opciones']),
+          /*  botonSiguiente(), */
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              barraProgreso(context),
-              infoPregunta(),
-              SizedBox(
-                height: 10.0,
-              ),
-              preguntaBuilder(),
-              opcionesBuilder(),
-              botonSiguiente(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  IconButton(
-                    icon: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      child: Icon(
-                        Icons.close,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  )
-                ],
-              ),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    'Rendirse',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.grey),
+                  ))
             ],
           ),
-        ),
+        ],
       ),
     );
   }
@@ -98,34 +174,50 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  Widget opcionesBuilder() {
+  Widget opcionesBuilder(List<Map<String, dynamic>> opciones) {
     return Container(
+      width: double.infinity,
       child: Column(
-        children: <Widget>[
-          OpcionWidget(
-            texto: 'Tarántula',
-            isCorrect: true,
-          ),
-          OpcionWidget(
-            texto: 'Échatelo',
-          ),
-          OpcionWidget(
-            texto: 'Canción',
-          ),
-          OpcionWidget(
-            texto: 'Agonía',
-          )
-        ],
+        children: opciones
+            .map((opcion) => GestureDetector(
+                onTap: () {
+                  if (opcion['isCorrect']) {
+                    print("Has acertado");
+                    opcion['estado'] = 2;
+                  } else {
+                    print("Incorrecto");
+                    opcion['estado'] = 3;
+                  }
+                  setState(() {});
+                  Timer(
+                      Duration(milliseconds: 750),
+                      () => {
+                            setState(() {
+                              if (this.preguntaActual + 1 ==
+                                  this.preguntas.length) {
+                                this.preguntaActual = 0;
+                              } else {
+                                this.preguntaActual++;
+                              }
+                            })
+                          });
+                },
+                child: OpcionWidget(
+                  texto: opcion['texto'],
+                  isCorrect: opcion['isCorrect'],
+                  estado: opcion['estado'],
+                )))
+            .toList(),
       ),
     );
   }
 
-  Widget preguntaBuilder() {
+  Widget preguntaBuilder(Map pregunta) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30.0),
-      height: this.height * 0.13,
+      height: this.height * 0.14,
       child: Text(
-        '¿Cúal es una palabra esdrújula?',
+        pregunta['pregunta'],
         style: TextStyle(
           color: Colors.white,
           fontSize: this.height * 0.04,
@@ -201,32 +293,22 @@ class _OpcionWidgetState extends State<OpcionWidget> {
   @override
   Widget build(BuildContext context) {
     double alto = MediaQuery.of(context).size.height;
-    return GestureDetector(
-      onTap: () {
-        if (this.widget.isCorrect) {
-          this.widget.estado = 2;
-        } else {
-          this.widget.estado = 3;
-        }
-        setState(() {});
-      },
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
-        child: Container(
-          margin: EdgeInsets.only(bottom: alto * 0.02),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              border: Border.all(
-                width: 3.0,
-                color: Color(0xFF21486A),
-              )),
-          child: ListTile(
-            title: Text(
-              widget.texto,
-              style: TextStyle(color: Colors.white, fontSize: alto * 0.03),
-            ),
-            trailing: getIcon(widget.estado),
+        margin: EdgeInsets.only(bottom: alto * 0.02),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            border: Border.all(
+              width: 3.0,
+              color: Color(0xFF21486A),
+            )),
+        child: ListTile(
+          title: Text(
+            widget.texto,
+            style: TextStyle(color: Colors.white, fontSize: alto * 0.03),
           ),
+          trailing: getIcon(widget.estado),
         ),
       ),
     );
@@ -245,7 +327,7 @@ class _OpcionWidgetState extends State<OpcionWidget> {
     }
     if (estado == 2) {
       return CircleAvatar(
-        backgroundColor: Color(0xff117EEB),
+        backgroundColor: Colors.green,
         radius: 15.0,
         child: Icon(
           Icons.check,
