@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:quizsurf/models/fichas_model.dart';
+export 'package:quizsurf/models/fichas_model.dart';
 import 'package:quizsurf/providers/fichas_provider.dart';
-
 
 class FichasBloc {
   static final FichasBloc _singleton = FichasBloc._internal();
@@ -15,13 +15,10 @@ class FichasBloc {
     //getDatos();
   }
 
-  
-
   final _dataController = StreamController<List<FichasModel>>.broadcast();
- 
-  Stream<List<FichasModel>> get fichas =>
-      _dataController.stream;
-      /*
+
+  Stream<List<FichasModel>> get fichas => _dataController.stream;
+  /*
   Stream<List<FichasModel>> get scansStreamHttp =>
       _dataController.stream.transform(validarHttp); */
 
@@ -30,17 +27,17 @@ class FichasBloc {
   }
 
   getDatos() async {
-    if(this.id_categoria == null){
-        _dataController.sink.add(await FichasProvider.db.getAll());
-    }else{
-
-        _dataController.sink.add(await FichasProvider.db.getBy('id_categoria', this.id_categoria));
+    if (this.id_categoria == null) {
+      _dataController.sink.add(await FichasProvider.db.getAll());
+    } else {
+      _dataController.sink.add(
+          await FichasProvider.db.getBy('id_categoria', this.id_categoria));
     }
-   
   }
 
-  getDatosById(int fkId ) async{
-    _dataController.sink.add(await FichasProvider.db.getBy('id_categoria', fkId));
+  getDatosById(int fkId) async {
+    _dataController.sink
+        .add(await FichasProvider.db.getBy('id_categoria', fkId));
   }
 
   deleteData(int id) async {

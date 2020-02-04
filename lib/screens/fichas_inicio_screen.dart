@@ -10,6 +10,31 @@ class FichasScreen extends StatelessWidget {
   CategoriasModel categoria;
   double ancho;
   double alto;
+  Widget opcionesFicha(BuildContext context, int id, FichasModel f) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.delete,
+          ),
+          onPressed: () {
+            _fichasBloc.deleteData(id);
+          },
+        ),
+        IconButton(
+          icon: Icon(Icons.edit),
+          onPressed: () {
+            this.showModal(context, f);
+          },
+        ),
+        SizedBox(
+          width: 20.0,
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Map data = ModalRoute.of(context).settings.arguments;
@@ -29,7 +54,7 @@ class FichasScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          this.showModal(context);
+          this.showModal(context, new FichasModel());
         },
         child: Icon(Icons.add),
       ),
@@ -86,44 +111,45 @@ class FichasScreen extends StatelessWidget {
           );
         }
 
-        return buildListaFichas(fichas);
+        return buildListaFichas(context, fichas);
       },
     );
   }
 
-  ListView buildListaFichas(List<FichasModel> fichas) {
+  ListView buildListaFichas(BuildContext context, List<FichasModel> fichas) {
     return ListView.builder(
         itemCount: fichas.length + 1,
         itemBuilder: (BuildContext context, int index) {
           if (index == 0)
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    this.showModal(context);
-                  },
-                )
-              ],
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[Text("${fichas.length} Fichas")],
+              ),
             );
           FichasModel ficha = fichas[index - 1];
           print(ficha);
-          return Container(
-            margin: EdgeInsets.only(bottom: 10.0),
-            child: FlipCard(
-              direction: FlipDirection.VERTICAL, // default
-              front: FichaComponent(texto: ficha.tema),
-              back: FichaComponent(texto: ficha.concepto),
-            ),
+          return Column(
+            children: <Widget>[
+              opcionesFicha(context, categoria.id, ficha),
+              Container(
+                margin: EdgeInsets.only(bottom: 10.0),
+                child: FlipCard(
+                  direction: FlipDirection.VERTICAL, // default
+                  front: FichaComponent(texto: ficha.tema),
+                  back: FichaComponent(texto: ficha.concepto),
+                ),
+              ),
+            ],
           );
         });
   }
 
-  void showModal(BuildContext context) {
+  void showModal(BuildContext context, FichasModel f) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => AddFichaScreen(id: this.categoria.id),
+      builder: (context) => AddFichaScreen(id: this.categoria.id, ficha: f),
     );
   }
 }
@@ -138,9 +164,22 @@ class FichaComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final alto = MediaQuery.of(context).size.height;
-    return Card(
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+        20.0,
+      )),
+      padding: EdgeInsets.symmetric(
+        horizontal: 30.0,
+        vertical: 5.0,
+      ),
       child: Container(
-        color: Colors.blueGrey.withOpacity(0.1),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            20.0,
+          ),
+          color: Colors.blueGrey.withOpacity(0.1),
+        ),
         height: alto * 0.25,
         child: Center(
           child: Text(
