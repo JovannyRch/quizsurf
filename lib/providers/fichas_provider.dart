@@ -4,13 +4,13 @@ import 'package:quizsurf/models/fichas_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
-
+import 'package:quizsurf/const/const.dart';
 
 class FichasProvider {
   static Database _database;
   static final FichasProvider db = FichasProvider._();
 
-  String dbName = "quizsurf2";
+  String dbName = kDBname;
   String tabla = "fichas";
   FichasProvider._();
 
@@ -26,18 +26,8 @@ class FichasProvider {
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, '$dbName.db');
-    return await openDatabase(path, version: 1,
-        onCreate: (Database db, int version) async {
-        await db.execute(
-        "CREATE TABLE $tabla"
-        "(id INTEGER PRIMARY KEY,"
-        "tema text,"
-        "concepto text,"
-        "id_categoria INTEGER,"
-        "FOREIGN KEY(id_categoria) REFERENCES categorias(id) ON DELETE CASCADE"
-        ")",
-      );
-    });
+    return await openDatabase(path,
+        version: 1, onCreate: (Database db, int version) async {});
   }
 
   insert(FichasModel scan) async {
@@ -53,7 +43,8 @@ class FichasProvider {
 
   Future<FichasModel> getByIdCategoria(int idCategoria) async {
     final db = await database;
-    final res = await db.query(tabla, where: 'id_categoria = ?', whereArgs: [idCategoria]);
+    final res = await db
+        .query(tabla, where: 'id_categoria = ?', whereArgs: [idCategoria]);
     return res.isNotEmpty ? FichasModel.fromJson(res.first) : null;
   }
 
@@ -75,8 +66,8 @@ class FichasProvider {
 
   Future<int> update(FichasModel tajeta) async {
     final db = await database;
-    final res = await db
-        .update(tabla, tajeta.toJson(), where: 'id = ?', whereArgs: [tajeta.id]);
+    final res = await db.update(tabla, tajeta.toJson(),
+        where: 'id = ?', whereArgs: [tajeta.id]);
     return res;
   }
 
