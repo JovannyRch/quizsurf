@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:quizsurf/screens/categorias_fichas_screen.dart';
 import 'package:quizsurf/screens/categorias_screen.dart';

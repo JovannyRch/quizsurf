@@ -4,8 +4,6 @@ import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class QuizScreen extends StatefulWidget {
-  QuizScreen({Key key}) : super(key: key);
-
   @override
   _QuizScreenState createState() => _QuizScreenState();
 }
@@ -20,6 +18,7 @@ class _QuizScreenState extends State<QuizScreen> {
   int contadorSegundos = 0;
   int indexPage = 0;
   List<bool> historial = [];
+  String id = "";
   List preguntas = [
     {
       'pregunta': 'Capital de Chile',
@@ -83,7 +82,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    this.width = MediaQuery.of(context).size.width;
+    this.id = ModalRoute.of(context).settings.arguments.toString();
+
     this.height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xFF252C4A),

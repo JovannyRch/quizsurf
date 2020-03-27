@@ -11,21 +11,25 @@ class CategoriasScreen extends StatelessWidget {
       'titulo': 'Matemáticas',
       'color1': Color.fromRGBO(241, 142, 17, 1.0),
       'color2': Color.fromRGBO(236, 98, 18, 1.0),
+      'id': 'matematicas'
     },
     {
       'titulo': 'Geografía',
       'color1': Color.fromRGBO(0, 142, 17, 1.0),
       'color2': Color.fromRGBO(0, 98, 18, 1.0),
+      'id': 'geografia'
     },
     {
       'titulo': 'Historia',
       'color1': Color.fromRGBO(241, 0, 17, 1.0),
       'color2': Color.fromRGBO(236, 0, 18, 1.0),
+      'id': 'historia'
     },
     {
       'titulo': 'Inglés',
       'color1': Color.fromRGBO(120, 142, 0, 1.0),
       'color2': Color.fromRGBO(100, 98, 0, 1.0),
+      'id': 'ingles'
     },
   ];
 
@@ -86,7 +90,7 @@ class CategoriasScreen extends StatelessWidget {
           ),*/
           SizedBox(height: this.alto * 0.02),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -120,7 +124,11 @@ class CategoriasScreen extends StatelessWidget {
                     Color color1 = categoria['color1'];
                     Color color2 = categoria['color2'];
                     return CardMateria(
-                        materia: materia, color1: color1, color2: color2);
+                      materia: materia,
+                      color1: color1,
+                      color2: color2,
+                      id: categoria['id'],
+                    );
                   }).toList(),
                 ),
               ],
@@ -158,10 +166,11 @@ class CategoriasScreen extends StatelessWidget {
 }
 
 class CardMateria extends StatelessWidget {
-  CardMateria({this.materia, this.color1, this.color2});
+  CardMateria({this.materia, this.color1, this.color2, this.id});
   final String materia;
   final Color color1;
   final Color color2;
+  final id;
 
   @override
   Widget build(BuildContext context) {
@@ -238,7 +247,7 @@ class CardMateria extends StatelessWidget {
                 borderRadius: new BorderRadius.circular(40.0),
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/quiz');
+                Navigator.of(context).pushNamed('/quiz', arguments: this.id);
               },
             ),
             Container(
