@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:quizsurf/const/const.dart';
+import 'package:quizsurf/providers/data_provider.dart';
 import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -10,44 +12,22 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   int segundos = 50;
-  final int tiempoInicial = 15;
+  final int tiempoInicial = 4;
   int preguntaActual = 0;
   int total = 10;
+  int fallos = 0;
   double width;
   double height;
   int contadorSegundos = 0;
   int indexPage = 0;
   List<bool> historial = [];
+  int puntos = 0;
+  List<Map> preguntas = [];
   String id = "";
-  List preguntas = [
-    {
-      'pregunta': 'Capital de Chile',
-      'opciones': [
-        {'texto': 'Santiago', 'isCorrect': true},
-        {'texto': 'Buenos Aires', 'isCorrect': false},
-        {'texto': 'Asunción', 'isCorrect': false},
-      ]
-    },
-    {
-      'pregunta': 'Capital de China',
-      'opciones': [
-        {'texto': 'Seul', 'isCorrect': false},
-        {'texto': 'Tokio', 'isCorrect': false},
-        {'texto': 'Pekin', 'isCorrect': true},
-      ]
-    },
-    {
-      'pregunta': 'Capital de Canada',
-      'opciones': [
-        {'texto': 'Otawa', 'isCorrect': false},
-        {'texto': 'Quebec', 'isCorrect': true},
-        {'texto': 'Washington', 'isCorrect': false},
-      ]
-    }
-  ];
   @override
   void initState() {
     super.initState();
+    this.cargarPreguntas();
     segundos = tiempoInicial;
     Timer.periodic(new Duration(seconds: 1), (timer) {
       setState(() {
@@ -60,6 +40,9 @@ class _QuizScreenState extends State<QuizScreen> {
 
       if (segundos == 0) {
         timer.cancel();
+        setState(() {
+          //this.indexPage = 2;
+        });
         Alert(
           context: context,
           type: AlertType.warning,
@@ -80,22 +63,37 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
+  void cargarPreguntas() async {
+    final preguntas = await dataProvider.cargarPreguntas('historia');
+    for (var p in preguntas) {
+      print(p['pregunta']);
+    }
+    //print(preguntas);
+  }
+
   @override
   Widget build(BuildContext context) {
     this.id = ModalRoute.of(context).settings.arguments.toString();
 
     this.height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xFF252C4A),
+      backgroundColor: kMainColor,
       body: SafeArea(
         child: IndexedStack(
           index: this.indexPage,
           children: <Widget>[
             pantallaInicio(context),
             cuerpoJuego(context),
+            finJuego(context),
           ],
         ),
       ),
+    );
+  }
+
+  Widget finJuego(BuildContext context) {
+    return Container(
+      child: Text("Hola"),
     );
   }
 
@@ -114,6 +112,26 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
+  Widget getFallos() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: builderFallos(),
+      ),
+    );
+  }
+
+  List<Widget> builderFallos() {
+    List<Widget> res = [];
+    for (int i = 0; i < this.fallos; i++) {
+      res.add(Icon(
+        Icons.close,
+        color: Colors.red,
+      ));
+    }
+    return res;
+  }
+
   SingleChildScrollView cuerpoJuego(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -123,8 +141,21 @@ class _QuizScreenState extends State<QuizScreen> {
           SizedBox(
             height: 10.0,
           ),
-          preguntaBuilder(this.preguntas[this.preguntaActual]),
-          opcionesBuilder(this.preguntas[this.preguntaActual]['opciones']),
+          getFallos(),
+          SizedBox(
+            height: 10.0,
+          ),
+          preguntas.length == 0
+              ? CircularPercentIndicator(
+                  radius: 10.0,
+                )
+              : preguntaBuilder(this.preguntas[this.preguntaActual]),
+          preguntas.length == 0
+              ? CircularPercentIndicator(
+                  radius: 10.0,
+                )
+              : opcionesBuilder(
+                  this.preguntas[this.preguntaActual]['opciones']),
           /*  botonSiguiente(), */
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -184,9 +215,30 @@ class _QuizScreenState extends State<QuizScreen> {
                   if (opcion['isCorrect']) {
                     print("Has acertado");
                     opcion['estado'] = 2;
+                    this.puntos++;
                   } else {
                     print("Incorrecto");
                     opcion['estado'] = 3;
+                    this.fallos++;
+                    if (this.fallos == 3) {
+                      Alert(
+                        context: context,
+                        type: AlertType.warning,
+                        title: "Fin del Juego",
+                        desc: "Te has equivocado 3 veces",
+                        buttons: [
+                          DialogButton(
+                            child: Text(
+                              "OK",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                            width: 120,
+                          )
+                        ],
+                      ).show();
+                    }
                   }
                   setState(() {});
                   Timer(
@@ -203,7 +255,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           });
                 },
                 child: OpcionWidget(
-                  texto: opcion['texto'],
+                  texto: opcion['opcion'],
                   isCorrect: opcion['isCorrect'],
                   estado: opcion['estado'],
                 )))
@@ -256,25 +308,66 @@ class _QuizScreenState extends State<QuizScreen> {
         top: this.height * 0.03,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            'Pregunta ${preguntaActual.toString()}',
-            style: TextStyle(
-              color: Color(0xff8D94BB),
-              fontSize: this.height * 0.035,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            '/ ${this.total.toString()}',
-            style: TextStyle(
-              color: Color(0xff8D94BB),
-              fontSize: this.height * 0.026,
-              fontWeight: FontWeight.bold,
-            ),
-          )
+          getNumeroPregunta(),
+          getPuntos(),
         ],
       ),
+    );
+  }
+
+  Widget getNumeroPregunta() {
+    return Row(
+      children: <Widget>[
+        Text(
+          'Pregunta ${preguntaActual.toString()}',
+          style: TextStyle(
+            color: Color(0xff8D94BB),
+            fontSize: this.height * 0.035,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          '/ ${this.total.toString()}',
+          style: TextStyle(
+            color: Color(0xff8D94BB),
+            fontSize: this.height * 0.026,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget getPuntos() {
+    return Row(
+      children: <Widget>[
+        /* Text(
+          'Puntos:',
+          style: TextStyle(
+            color: kTextColor,
+            fontSize: this.height * 0.027,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.right,
+        ), */
+        Text(
+          '${this.puntos}',
+          style: TextStyle(
+            color: kTextColor,
+            fontSize: this.height * 0.045,
+          ),
+        ),
+        Icon(
+          Icons.check,
+          color: kTextColor,
+          size: 30.0,
+        ),
+        SizedBox(
+          width: this.width * 0.080,
+        )
+      ],
     );
   }
 }

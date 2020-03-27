@@ -1,0 +1,161 @@
+{
+    "historia": [
+        {
+            "pregunta": "Inicio de la segunda guerra mundial",
+            "opciones": [
+                {
+                    "opcion": "1939",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "1939",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "1939",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "pregunta": "Primer presidente de México",
+            "opciones": [
+                {
+                    "opcion": "Guadalupe Victoria",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "Agustín de Iturbide",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "Porfirio Díaz",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "pregunta": "Año del primer aterrizaje lunar",
+            "opciones": [
+                {
+                    "opcion": "1969",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "1979",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "1959",
+                    "isCorrect": false
+                }
+            ]
+        }
+    ],
+    "geografia": [
+        {
+            "pregunta": "Capital de EUA",
+            "opciones": [
+                {
+                    "opcion": "Whasington",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "New York",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "California",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "pregunta": "Capital de Cánada",
+            "opciones": [
+                {
+                    "opcion": "Otawa",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "Quebec",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "Toronto",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "pregunta": "Capital de España",
+            "opciones": [
+                {
+                    "opcion": "Madrid",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "Barcelona",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "Sevilla",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "pregunta": "Capital de China",
+            "opciones": [
+                {
+                    "opcion": "Pekin",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "Tokio",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "Seúl",
+                    "isCorrect": false
+                }
+            ]
+        }
+    ],
+    "ingles": [
+        {
+            "pregunta": "Rabbit",
+            "opciones": [
+                {
+                    "opcion": "Conejo",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "Ratón",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "Otro",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "pregunta": "Buenas tardes",
+            "opciones": [
+                {
+                    "opcion": "Good Afternoon",
+                    "isCorrect": true
+                },
+                {
+                    "opcion": "Good Evening",
+                    "isCorrect": false
+                },
+                {
+                    "opcion": "Good Night",
+                    "isCorrect": false
+                }
+            ]
+        }
+    ]
+}

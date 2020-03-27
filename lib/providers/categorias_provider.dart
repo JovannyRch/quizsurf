@@ -1,20 +1,19 @@
 import 'dart:io';
 
+import 'package:quizsurf/const/const.dart';
 import 'package:quizsurf/models/categorias_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
-
 class CategoriasProvider {
   static Database _database;
   static final CategoriasProvider db = CategoriasProvider._();
   String tabla = "categorias";
-  String dbName = "quizsurf2";
+  String dbName = kDBname;
   CategoriasProvider._() {}
 
   Future<Database> get database async {
-   
     if (_database != null) return _database;
     _database = await initDB();
     return _database;
@@ -26,13 +25,13 @@ class CategoriasProvider {
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
       await db.execute(
-        "CREATE TABLE $tabla"
+        "CREATE TABLE categorias"
         "(id INTEGER PRIMARY KEY,"
         "nombre text,"
         "descripcion text"
         ")",
       );
-       await db.execute(
+      await db.execute(
         "CREATE TABLE fichas"
         "(id INTEGER PRIMARY KEY,"
         "tema text,"
@@ -65,7 +64,8 @@ class CategoriasProvider {
 
   Future<List<CategoriasModel>> getBy(String campo, String valor) async {
     final db = await database;
-    final res = await db.rawQuery("SELECT * from $tabla where $campo = '$valor'");
+    final res =
+        await db.rawQuery("SELECT * from $tabla where $campo = '$valor'");
     return res.isEmpty
         ? []
         : res.map((registro) => CategoriasModel.fromJson(registro)).toList();
@@ -73,8 +73,8 @@ class CategoriasProvider {
 
   Future<int> update(CategoriasModel tajeta) async {
     final db = await database;
-    final res = await db
-        .update(tabla, tajeta.toJson(), where: 'id = ?', whereArgs: [tajeta.id]);
+    final res = await db.update(tabla, tajeta.toJson(),
+        where: 'id = ?', whereArgs: [tajeta.id]);
     return res;
   }
 
