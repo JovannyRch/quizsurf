@@ -1,18 +1,16 @@
 import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:quizsurf/screens/quiz_screen.dart';
+import 'package:quizsurf/utils/utils.dart' as utils;
 
 class CategoriasScreen extends StatelessWidget {
   double alto;
   double ancho;
-
+  String preguntaDia = "";
+  String categoria = "";
+  String nombreMateria = "";
   List<Map<String, dynamic>> categorias = [
-    {
-      'titulo': 'Matemáticas',
-      'color1': Color.fromRGBO(241, 142, 17, 1.0),
-      'color2': Color.fromRGBO(236, 98, 18, 1.0),
-      'id': 'matematicas'
-    },
     {
       'titulo': 'Geografía',
       'color1': Color.fromRGBO(0, 142, 17, 1.0),
@@ -33,8 +31,24 @@ class CategoriasScreen extends StatelessWidget {
     },
   ];
 
+  CategoriasScreen() {
+    var random = new Random();
+    int pos = random.nextInt(this.categorias.length);
+    this.categoria = this.categorias[pos]['id'];
+    this.nombreMateria = this.categorias[pos]['titulo'];
+    this.categorias.add({
+      'titulo': 'Matemáticas',
+      'color1': Color.fromRGBO(241, 142, 17, 1.0),
+      'color2': Color.fromRGBO(236, 98, 18, 1.0),
+      'id': 'matematicas'
+    });
+  }
+
+  void _cargarPreguntaDia() async {}
+
   @override
   Widget build(BuildContext context) {
+    _cargarPreguntaDia();
     this.alto = MediaQuery.of(context).size.height;
     this.ancho = MediaQuery.of(context).size.width;
     final caja = Transform.rotate(
@@ -158,7 +172,66 @@ class CategoriasScreen extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
+          FutureBuilder(
+            future: utils.preguntaAleatoria(this.categoria),
+            builder: (BuildContext, snapshot) {
+              print("Cargando la pregunta");
+              print(snapshot.data);
+              if (snapshot.hasData) {
+                final pregunta = snapshot.data['pregunta'];
+                final opciones = snapshot.data['opciones'];
+                List<Widget> preguntaWidgets = [
+                  Text(this.nombreMateria,
+                      style: TextStyle(
+                        color: Colors.blue.shade900,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Text(
+                    "¿$pregunta?",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.blue.shade900,
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                ];
+
+                utils.shuffle(opciones);
+                for (var o in opciones) {
+                  preguntaWidgets.add(Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    margin: EdgeInsets.symmetric(
+                      vertical: 3.0,
+                    ),
+                    child: Row(children: [
+                      Icon(Icons.adjust),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        o['opcion'],
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.blue.shade900,
+                        ),
+                      ),
+                    ]),
+                  ));
+                }
+
+                return Container(
+                  width: ancho * 0.95,
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: preguntaWidgets,
+                  ),
+                );
+              }
+              return CircularProgressIndicator();
+            },
+          ),
         ],
       ),
     );
@@ -247,7 +320,10 @@ class CardMateria extends StatelessWidget {
                 borderRadius: new BorderRadius.circular(40.0),
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/quiz', arguments: this.id);
+                if (this.id != "matematicas") {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext) => new QuizScreen(this.id)));
+                } else {}
               },
             ),
             Container(

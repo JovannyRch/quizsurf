@@ -5,14 +5,18 @@ import 'package:quizsurf/providers/data_provider.dart';
 import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import 'package:quizsurf/utils/utils.dart' as utils;
+
 class QuizScreen extends StatefulWidget {
+  final String materia;
+  QuizScreen(@required this.materia);
   @override
   _QuizScreenState createState() => _QuizScreenState();
 }
 
 class _QuizScreenState extends State<QuizScreen> {
   int segundos = 50;
-  final int tiempoInicial = 4;
+  final int tiempoInicial = 60;
   int preguntaActual = 0;
   int total = 10;
   int fallos = 0;
@@ -22,27 +26,30 @@ class _QuizScreenState extends State<QuizScreen> {
   int indexPage = 0;
   List<bool> historial = [];
   int puntos = 0;
-  List<Map> preguntas = [];
+  List<Map<String, dynamic>> preguntas = [];
   String id = "";
+  bool isFinJuego = false;
+  Timer timer;
   @override
   void initState() {
+    this.id = widget.materia;
     super.initState();
-    this.cargarPreguntas();
+    print("LA materia es $id");
+    this.cargarPreguntas(this.id);
     segundos = tiempoInicial;
-    Timer.periodic(new Duration(seconds: 1), (timer) {
-      setState(() {
-        contadorSegundos++;
-        segundos--;
-        if (contadorSegundos == 3) {
-          this.indexPage = 1;
-        }
-      });
-
+    timer = Timer.periodic(new Duration(seconds: 1), (timer) {
+      if (mounted) {
+        setState(() {
+          contadorSegundos++;
+          segundos--;
+          if (contadorSegundos == 3) {
+            this.indexPage = 1;
+          }
+        });
+      }
       if (segundos == 0) {
         timer.cancel();
-        setState(() {
-          //this.indexPage = 2;
-        });
+
         Alert(
           context: context,
           type: AlertType.warning,
@@ -60,22 +67,40 @@ class _QuizScreenState extends State<QuizScreen> {
           ],
         ).show();
       }
+
+      if (this.isFinJuego) {
+        timer.cancel();
+      }
     });
   }
 
-  void cargarPreguntas() async {
-    final preguntas = await dataProvider.cargarPreguntas('historia');
+  void cargarPreguntas(String materia) async {
+    final preguntas = await dataProvider.cargarPreguntas(materia);
     for (var p in preguntas) {
-      print(p['pregunta']);
+      Map<String, dynamic> preg = {
+        'pregunta': p['pregunta'],
+      };
+
+      List<Map<String, dynamic>> ops = [];
+      for (var opc in p['opciones']) {
+        ops.add({'opcion': opc['opcion'], 'isCorrect': opc['isCorrect']});
+      }
+      preg['opciones'] = ops;
+      //Mezclar opciones
+      utils.shuffle(preg['opciones']);
+      this.preguntas.add(preg);
+      //this.preguntas.add(preg['pregunta']);
     }
-    //print(preguntas);
+    //Mezlar preguntas
+    utils.shuffle(this.preguntas);
   }
 
   @override
   Widget build(BuildContext context) {
-    this.id = ModalRoute.of(context).settings.arguments.toString();
+    //this.id = ModalRoute.of(context).settings.arguments.toString();
 
     this.height = MediaQuery.of(context).size.height;
+    this.width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kMainColor,
       body: SafeArea(
@@ -185,8 +210,11 @@ class _QuizScreenState extends State<QuizScreen> {
         borderRadius: new BorderRadius.circular(30.0),
       ),
       onPressed: () {
-        this.preguntaActual++;
-        setState(() {});
+        if (mounted) {
+          setState(() {
+            this.preguntaActual++;
+          });
+        }
       },
       child: Container(
         padding: EdgeInsets.all(
@@ -221,19 +249,40 @@ class _QuizScreenState extends State<QuizScreen> {
                     opcion['estado'] = 3;
                     this.fallos++;
                     if (this.fallos == 3) {
+                      this.isFinJuego = true;
                       Alert(
                         context: context,
                         type: AlertType.warning,
-                        title: "Fin del Juego",
-                        desc: "Te has equivocado 3 veces",
+                        title: "Has fallado 3 veces",
+                        desc: "Tu puntuación $total",
                         buttons: [
                           DialogButton(
                             child: Text(
-                              "OK",
+                              "Salir",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            },
+                            width: 120,
+                          ),
+                          DialogButton(
+                            child: Text(
+                              "Volver a jugar",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            onPressed: () {
+                              this.segundos = 60;
+                              this.puntos = 0;
+                              this.fallos = 0;
+                              this.preguntaActual = 0;
+                              this.historial.clear();
+
+                              Navigator.pop(context);
+                            },
                             width: 120,
                           )
                         ],
