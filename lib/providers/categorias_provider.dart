@@ -43,11 +43,12 @@ class CategoriasProvider {
       await db.execute(
         "CREATE TABLE records"
         "(id INTEGER PRIMARY KEY,"
+        "materia_id text,"
         "materia text,"
         "record integer,"
         "intentos INTEGER,"
         "fallos INTEGER,"
-        "aciertos INTEGER,"
+        "aciertos INTEGER"
         ")",
       );
     });

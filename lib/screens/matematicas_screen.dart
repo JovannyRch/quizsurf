@@ -68,7 +68,6 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
     segundos = tiempoInicial;
 
     timer = Timer.periodic(new Duration(seconds: 1), (timer) async {
-      print("Segundo $segundos");
       if (mounted) {
         setState(() {
           contadorSegundos++;
@@ -153,8 +152,8 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
     print("Contador: $contadorPreguntas");
 
     this.opciones.clear();
-    operando1 = rand.nextInt(max) + min;
-    operando2 = rand.nextInt(max) + min;
+    operando1 = this.randomInRange(max, min);
+    operando2 = this.randomInRange(max, min);
     double resultado = 0;
     //Generar una operacion aleatoria
     int tipoOperacion = rand.nextInt(4);
