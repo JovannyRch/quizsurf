@@ -1,161 +1,2717 @@
 {
-    "historia": [
+  "ciencia": [
+    {
+      "pregunta": "¿Qué es ciencia?",
+      "opciones": [
         {
-            "pregunta": "Inicio de la segunda guerra mundial",
-            "opciones": [
-                {
-                    "opcion": "1939",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "1939",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "1939",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "conjunto de conocimientos objetivos y verificables ",
+          "isCorrect": true
         },
         {
-            "pregunta": "Primer presidente de México",
-            "opciones": [
-                {
-                    "opcion": "Guadalupe Victoria",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "Agustín de Iturbide",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "Porfirio Díaz",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "lo que todos conocen",
+          "isCorrect": false
         },
         {
-            "pregunta": "Año del primer aterrizaje lunar",
-            "opciones": [
-                {
-                    "opcion": "1969",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "1979",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "1959",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "estudio de la naturaleza",
+          "isCorrect": false
         }
-    ],
-    "geografia": [
+      ]
+    },
+    {
+      "pregunta": "Estudia las articulaciones",
+      "opciones": [
         {
-            "pregunta": "Capital de EUA",
-            "opciones": [
-                {
-                    "opcion": "Whasington",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "New York",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "California",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "artrología",
+          "isCorrect": true
         },
         {
-            "pregunta": "Capital de Cánada",
-            "opciones": [
-                {
-                    "opcion": "Otawa",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "Quebec",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "Toronto",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "astrología",
+          "isCorrect": false
         },
         {
-            "pregunta": "Capital de España",
-            "opciones": [
-                {
-                    "opcion": "Madrid",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "Barcelona",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "Sevilla",
-                    "isCorrect": false
-                }
-            ]
-        },
-        {
-            "pregunta": "Capital de China",
-            "opciones": [
-                {
-                    "opcion": "Pekin",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "Tokio",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "Seúl",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "antropología",
+          "isCorrect": false
         }
-    ],
-    "ingles": [
+      ]
+    },
+    {
+      "pregunta": "Autor de la obra 'El origen de las especies' ",
+      "opciones": [
         {
-            "pregunta": "Rabbit",
-            "opciones": [
-                {
-                    "opcion": "Conejo",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "Ratón",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "Otro",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "Charles Darwin",
+          "isCorrect": true
         },
         {
-            "pregunta": "Buenas tardes",
-            "opciones": [
-                {
-                    "opcion": "Good Afternoon",
-                    "isCorrect": true
-                },
-                {
-                    "opcion": "Good Evening",
-                    "isCorrect": false
-                },
-                {
-                    "opcion": "Good Night",
-                    "isCorrect": false
-                }
-            ]
+          "opcion": "Albert Einstein",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Blaise Pascal",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Galileo Galilei",
+          "isCorrect": false
         }
-    ]
+      ]
+    },
+    {
+      "pregunta": "Estudia como funciona el cuerpo ",
+      "opciones": [
+        {
+          "opcion": "fisiología",
+          "isCorrect": true
+        },
+        {
+          "opcion": "fisioterapia",
+          "isCorrect": false
+        },
+        {
+          "opcion": "logopedia",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Estudia trastornos de lenguaje y audición",
+      "opciones": [
+        {
+          "opcion": "logopedia",
+          "isCorrect": true
+        },
+        {
+          "opcion": "fisioterapia",
+          "isCorrect": false
+        },
+        {
+          "opcion": "lingüística",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es histerectomía?",
+      "opciones": [
+        {
+          "opcion": "remoción del útero",
+          "isCorrect": true
+        },
+        {
+          "opcion": "remoción del páncreas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "remoción del intestino",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Absorbe los nutrientes y el agua de nuestro organismo",
+      "opciones": [
+        {
+          "opcion": "intestinos",
+          "isCorrect": true
+        },
+        {
+          "opcion": " pulmones",
+          "isCorrect": false
+        },
+        {
+          "opcion": "riñón",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Conecta al estómago con el intestino grueso",
+      "opciones": [
+        {
+          "opcion": "intestino delgado",
+          "isCorrect": true
+        },
+        {
+          "opcion": "hígado",
+          "isCorrect": false
+        },
+        {
+          "opcion": "páncreas",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Estructura cerrada situada en la unión entre el intestino grueso y el delgado",
+      "opciones": [
+        {
+          "opcion": "apéndice",
+          "isCorrect": true
+        },
+        {
+          "opcion": "colon",
+          "isCorrect": false
+        },
+        {
+          "opcion": "riñón",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Se encuentra bajo el hígado y es protegida por las costillas",
+      "opciones": [
+        {
+          "opcion": "Vesícula biliar",
+          "isCorrect": true
+        },
+        {
+          "opcion": "colon",
+          "isCorrect": false
+        },
+        {
+          "opcion": "apéndice",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Animal que se sostiene sobre cuatro patas",
+      "opciones": [
+        {
+          "opcion": "Cuadrúpedo",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Ápodo",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Miriápodo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué líquido segrega el hígado?",
+      "opciones": [
+        {
+          "opcion": "Insulina",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Bilis",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Sangre",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Unidad que mide la temperatura",
+      "opciones": [
+        {
+          "opcion": "Celsius",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Gramos",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Ohmio",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Sustancia medicinal que provoca sueño",
+      "opciones": [
+        {
+          "opcion": "Placebo",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Narcótico",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Analgésico",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuántos gramos hay en un kilogramo?",
+      "opciones": [
+        {
+          "opcion": "1000",
+          "isCorrect": true
+        },
+        {
+          "opcion": "100",
+          "isCorrect": false
+        },
+        {
+          "opcion": "10",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿A qué especie pertenece la salamandra?",
+      "opciones": [
+        {
+          "opcion": "Anfibio",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Reptil",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Molusco",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué estudia la neurología?",
+      "opciones": [
+        {
+          "opcion": "Sistema Nervioso",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Los musculos",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Los huesos",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Movimiento de la tierra alrededor del sol",
+      "opciones": [
+        {
+          "opcion": "Traslacion",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Perpendicular ",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Rotación",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Animal que carece de extremidades",
+      "opciones": [
+        {
+          "opcion": "Ápodo",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Litófido",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Bípedo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "La anestesia produce pérdida de:",
+      "opciones": [
+        {
+          "opcion": "Sensibilidad",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Emoción",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Dolor",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué movimiento de placas producen los sismos?",
+      "opciones": [
+        {
+          "opcion": "Tectónicas",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Isotónicas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Protónicas",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Neil Armtrong fue el primer hombre que",
+      "opciones": [
+        {
+          "opcion": "Caminó en la Luna",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Manejó un tren",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Viajó en avión",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Combinación de dos o más mentales ",
+      "opciones": [
+        {
+          "opcion": "Aliación",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Depuración",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Contrición",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Medicamento para combatir alergias",
+      "opciones": [
+        {
+          "opcion": "Antihistámico",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Analgésico",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Antibiotico",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿A qué familia pertenece el escorpión?",
+      "opciones": [
+        {
+          "opcion": "Arácnidos",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Crustáceos",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Moluscos",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Cuarto planeta del sistema solar",
+      "opciones": [
+        {
+          "opcion": "Marte",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Urano",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Mercurio",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Hueso más grande del ser humano",
+      "opciones": [
+        {
+          "opcion": "Fémur",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Humero",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Peroné",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Nombre de la lava antes de ser expulsada a la superficie",
+      "opciones": [
+        {
+          "opcion": "Magma",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Escollo",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Grava",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Parte del cuerpo que se examina en una encefalografía",
+      "opciones": [
+        {
+          "opcion": "Craneo",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Pulmones",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Higado",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "La cucaracha es un animal:",
+      "opciones": [
+        {
+          "opcion": "Invertebrado",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Vertebrado",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Insecto",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál de los siguientes animales es un mamífero?",
+      "opciones": [
+        {
+          "opcion": "Ballena Azul",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Mariposas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Serpientes",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Energía obtenida del viento",
+      "opciones": [
+        {
+          "opcion": "Eólica",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Térmica",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Eléctrica",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál es el ave más veloz del mundo?",
+      "opciones": [
+        {
+          "opcion": "Halcón peregrino",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Colibrí",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Correcaminos",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién inventó el aeroplano?",
+      "opciones": [
+        {
+          "opcion": "Hermanos Wright",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Alexander Fleming",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Nikola Tesla",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Organismo cuya dieta consiste principalmente en carnes",
+      "opciones": [
+        {
+          "opcion": "Carnívoro",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Hervívoro",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Vivíparo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Técnica que describe la superficie de un terreno",
+      "opciones": [
+        {
+          "opcion": "Topografía",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Holografía",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Mecanografía",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿En dónde se inventó la pólvora?",
+      "opciones": [
+        {
+          "opcion": "China",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Mexico",
+          "isCorrect": false
+        },
+        {
+          "opcion": "India",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Conjunto de abejas que sale de una colmena",
+      "opciones": [
+        {
+          "opcion": "Enjambre",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Manada",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Cardumen",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuántas patas tiene una tarántula?",
+      "opciones": [
+        {
+          "opcion": "6",
+          "isCorrect": true
+        },
+        {
+          "opcion": "10",
+          "isCorrect": false
+        },
+        {
+          "opcion": "8",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Inventor del telégrafo eléctrico ",
+      "opciones": [
+        {
+          "opcion": "Samuel Morse",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Graham Bell",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Thomas Edison",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "El orden de los elementos en la tabla periódica toma en cuenta:",
+      "opciones": [
+        {
+          "opcion": "El peso atómico ",
+          "isCorrect": true
+        },
+        {
+          "opcion": "El tamaño",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Símbolos",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué carencia produce el albinismo?",
+      "opciones": [
+        {
+          "opcion": "Pigmentación",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Vitamina A",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Calcio",
+          "isCorrect": false
+        }
+      ]
+    }
+  ],
+  "historia": [
+    {
+      "pregunta": "Inicio de la segunda guerra mundial",
+      "opciones": [
+        {
+          "opcion": "1939",
+          "isCorrect": true
+        },
+        {
+          "opcion": "1929",
+          "isCorrect": false
+        },
+        {
+          "opcion": "1914",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Los inventores del cinematógrafo fueron los hermanos:",
+      "opciones": [
+        {
+          "opcion": "Lumiére",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Montgolfier",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Jons",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Primer presidente de México",
+      "opciones": [
+        {
+          "opcion": "Guadalupe Victoria",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Agustín de Iturbide",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Porfirio Díaz",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Año del primer aterrizaje lunar",
+      "opciones": [
+        {
+          "opcion": "1969",
+          "isCorrect": true
+        },
+        {
+          "opcion": "1979",
+          "isCorrect": false
+        },
+        {
+          "opcion": "1959",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "La Guerra Fría fue entre Estados Unidos y ¿que otra potencia mundial?",
+      "opciones": [
+        {
+          "opcion": "La Unión Sovietica",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Japón",
+          "isCorrect": false
+        },
+        {
+          "opcion": "China",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién fue la primera ministra de la Gran Bretaña?",
+      "opciones": [
+        {
+          "opcion": "Margaret Thatcher",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Florence Nightingale",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Jane Austen",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién fue el dictador que provocó y lideró la revolución cubana?",
+      "opciones": [
+        {
+          "opcion": "Fidel Castro",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Che Guevara",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Aldo Trujillo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién asesino a Abraham Lincoln?",
+      "opciones": [
+        {
+          "opcion": "John Wilkes Booth",
+          "isCorrect": true
+        },
+        {
+          "opcion": "James Earl Ray",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Lee Harvey Oswald",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿De qué partido era líder Adolf Hitler?",
+      "opciones": [
+        {
+          "opcion": "Partido Nazi",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Partido comunista",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Partido facista republicano",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Documento aprobado por el rey Juan de Inglaterra en 1215",
+      "opciones": [
+        {
+          "opcion": "Carta Magna",
+          "isCorrect": true
+        },
+        {
+          "opcion": "El pacto de Mayflower",
+          "isCorrect": false
+        },
+        {
+          "opcion": "La ley del sello",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué continente fue devastado por la peste negra en el siglo XIV?",
+      "opciones": [
+        {
+          "opcion": "Europa",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Ámerica",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Asia",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién creo la primera imprenta funcional?",
+      "opciones": [
+        {
+          "opcion": "Johannes Gutenberg",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Nikola Tesla",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Henry Ford",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Año del inicio de la Primera Guerra Mundial",
+      "opciones": [
+        {
+          "opcion": "1914",
+          "isCorrect": true
+        },
+        {
+          "opcion": "1917",
+          "isCorrect": false
+        },
+        {
+          "opcion": "1937",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién empezó la reforma hacia el protestantismo?",
+      "opciones": [
+        {
+          "opcion": "Martín Lutero",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Voltaire",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Francis Bacon",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Adquisición de territorio que Estados Unidos le compró a Francia en 1803",
+      "opciones": [
+        {
+          "opcion": "Compra de Luisiana",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Compra de Alaska",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Anexión de Texas",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿En qué evento politico-social se dio el periodo del Reino del Terror?",
+      "opciones": [
+        {
+          "opcion": "Revolución Francesa",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Revolución Cubana",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Revolución Americana",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué potencia mundial mandó el primer hombre al espacio?",
+      "opciones": [
+        {
+          "opcion": "Unión Sovietica",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Estados Unidos",
+          "isCorrect": false
+        },
+        {
+          "opcion": "China",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿En dónde se oficiaron las primeras olimpiadas modernas de 1896?",
+      "opciones": [
+        {
+          "opcion": "Grecia",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Francia",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Italia",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿En qué fecha fue asesinado Julio César?",
+      "opciones": [
+        {
+          "opcion": "15 de marzo",
+          "isCorrect": true
+        },
+        {
+          "opcion": "15 de febrero",
+          "isCorrect": false
+        },
+        {
+          "opcion": "15 de mayo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿De qué país fue primera dama Eva Perón?",
+      "opciones": [
+        {
+          "opcion": "Argentina",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Colombia",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Perú",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál fue el nombre de la primera computadora?",
+      "opciones": [
+        {
+          "opcion": "ENIAC",
+          "isCorrect": true
+        },
+        {
+          "opcion": "INIAC",
+          "isCorrect": false
+        },
+        {
+          "opcion": "CAINE",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué civilización estaba arraigada en la ciudad de Tenochtitlán?",
+      "opciones": [
+        {
+          "opcion": "Aztecas",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Mayas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Incas",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién pintó la 'Mona Lisa' y la 'Última cena'?",
+      "opciones": [
+        {
+          "opcion": "Leonardo da Vinci",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Miguel Ángel",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Picasso",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué nación africana se resistió a la conquista europea a finales del siglo XIX?",
+      "opciones": [
+        {
+          "opcion": "Etiopía",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Nigeria",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Camerún",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Quién escribió 'El manifiesto del partido comunista'?",
+      "opciones": [
+        {
+          "opcion": "Marx y Engels",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Karl Marx",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Friedrich Engels",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Responsable de la liberación de gran parte de Sudamérica",
+      "opciones": [
+        {
+          "opcion": "Simón Bolívar",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Manuel Noriega",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Agustín de Iturbide",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál fue la primera dinastía china?",
+      "opciones": [
+        {
+          "opcion": "La dinastía Qin",
+          "isCorrect": true
+        },
+        {
+          "opcion": "La dinastía Ming",
+          "isCorrect": false
+        },
+        {
+          "opcion": " La dinastía Ming",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Emperador romano que firmó el Edicto de Milán para legalizar el cristianismo",
+      "opciones": [
+        {
+          "opcion": "Constantino",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Augusto",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Nerón",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿En qué batalla de 1815 fue derrotado Napoleón Bonaparte?",
+      "opciones": [
+        {
+          "opcion": "En la batalla de Waterloo",
+          "isCorrect": true
+        },
+        {
+          "opcion": "La invasion de Normandía",
+          "isCorrect": false
+        },
+        {
+          "opcion": "En la batalla de Gettysburg",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué país no fue miembro de los aliados durante la Segunda Guerra Mundial?",
+      "opciones": [
+        {
+          "opcion": "Italia",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Estados Unidos",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Gran Bretaña",
+          "isCorrect": false
+        }
+      ]
+    }
+  ],
+  "geografia": [
+    {
+      "pregunta": "Capital de EUA",
+      "opciones": [
+        {
+          "opcion": "Whasington",
+          "isCorrect": true
+        },
+        {
+          "opcion": "New York",
+          "isCorrect": false
+        },
+        {
+          "opcion": "California",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Capital de Cánada",
+      "opciones": [
+        {
+          "opcion": "Otawa",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Quebec",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Toronto",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Capital de España",
+      "opciones": [
+        {
+          "opcion": "Madrid",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Barcelona",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Sevilla",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Capital de China",
+      "opciones": [
+        {
+          "opcion": "Pekin",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Tokio",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Seúl",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál es el océano más grande del mundo?",
+      "opciones": [
+        {
+          "opcion": "Océano Pacífico",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Océano Índico",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Océano Atlántico",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "La primera bomba atómica se uso en:",
+      "opciones": [
+        {
+          "opcion": " México",
+          "isCorrect": false
+        },
+        {
+          "opcion": " En Rusia",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Japón",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál es el  país de los 1000 lagos?",
+      "opciones": [
+        {
+          "opcion": "Canadá",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Bélgica",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Finlandia",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "La región más pobre del mundo está en:",
+      "opciones": [
+        {
+          "opcion": "Nepal",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Sahel",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Zimbabue",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "El río más largo de Europa es:",
+      "opciones": [
+        {
+          "opcion": "Volga",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Ebro",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Tajo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuántos volcanes siguen activos en el mundo?",
+      "opciones": [
+        {
+          "opcion": "1500",
+          "isCorrect": true
+        },
+        {
+          "opcion": "800",
+          "isCorrect": false
+        },
+        {
+          "opcion": "1700",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál es el país con mayor población del mundo?",
+      "opciones": [
+        {
+          "opcion": "China",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Japón",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Inglaterra",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "El monte más alto del mundo se llama:",
+      "opciones": [
+        {
+          "opcion": "Kilimanjaro",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Makalu",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Everest",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuántos grandes lagos hay en Estados Unidos?",
+      "opciones": [
+        {
+          "opcion": "7",
+          "isCorrect": false
+        },
+        {
+          "opcion": "5",
+          "isCorrect": true
+        },
+        {
+          "opcion": "3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuántos países integran el Reino Unido?",
+      "opciones": [
+        {
+          "opcion": "2",
+          "isCorrect": false
+        },
+        {
+          "opcion": "4",
+          "isCorrect": true
+        },
+        {
+          "opcion": "5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "País que no limita con Francia",
+      "opciones": [
+        {
+          "opcion": "Holanda",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Italia",
+          "isCorrect": false
+        },
+        {
+          "opcion": "España",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Entre qué países se encuentra el estrecho de Bering?",
+      "opciones": [
+        {
+          "opcion": "Estados Unidos y Rusia",
+          "isCorrect": true
+        },
+        {
+          "opcion": "India y Egipto",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Francia e Inglaterra",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál es el río más largo del mundo?",
+      "opciones": [
+        {
+          "opcion": "Congo",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Amazonas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Nilo",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿En qué frontera se encuentra el Everest?",
+      "opciones": [
+        {
+          "opcion": "Nepal e India",
+          "isCorrect": false
+        },
+        {
+          "opcion": "China y Nepal",
+          "isCorrect": true
+        },
+        {
+          "opcion": "China e India",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál es la isla más grande del Mediterráneo?",
+      "opciones": [
+        {
+          "opcion": "Sicilia",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Mallorca",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Chipre",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Región natural con vegetación exuberante, que predomina en climas con altas temperaturas y humedad",
+      "opciones": [
+        {
+          "opcion": "Selva",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Bosque templado",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Estepa",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Región natural que se caracteriza por tener pinos, encinos y animales como el oso y el venado.",
+      "opciones": [
+        {
+          "opcion": "Estepa",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Bosque templado",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Desierto",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Región natural que carece de vegetación y tiene clima extremoso",
+      "opciones": [
+        {
+          "opcion": "Selva",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Desierto",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Pradera",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es la biodiversidad?",
+      "opciones": [
+        {
+          "opcion": "Representación de un lugar en un plano",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Los países mega diversos",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Variedad de especies vegetales y animales",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué son los recursos renovables?",
+      "opciones": [
+        {
+          "opcion": "Los elementos que tardan miles o millones de años en deformarse",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Elementos que después de un lapso relativamente corto pueden restablecerse",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Región natural con vegetación exuberante",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué son los recursos no renovables?",
+      "opciones": [
+        {
+          "opcion": "Región natural que predomina en climas con altas temperaturas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "La zona metropolitana de la ciudad de México",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Los elementos que tardan miles o millones de años en formarse",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es el desarrollo sustentable?",
+      "opciones": [
+        {
+          "opcion": "Plan de acción con metas a mediano plazo",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Participación de los miembros de la comunidad ",
+          "isCorrect": false
+        },
+        {
+          "opcion": "El aprovechamiento racional de los recursos",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Que es la población absoluta?",
+      "opciones": [
+        {
+          "opcion": "Número de habitantes por kilómetro cuadrado",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Número total de habitantes de un territorio",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Número de nacimientos por cada mil habitantes",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es la población relativa?",
+      "opciones": [
+        {
+          "opcion": "El número de nacimientos por cada mil habitantes",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Número de habitantes por kilómetro cuadrado",
+          "isCorrect": true
+        },
+        {
+          "opcion": "El número de muertes por cada mil habitantes",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es el índice de natalidad? ",
+      "opciones": [
+        {
+          "opcion": "Número de nacimientos por cada mil habitantes ",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Número de habitantes por kilómetro cuadrado   ",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Número total de habitantes de un territorio",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es el censo?",
+      "opciones": [
+        {
+          "opcion": "Comprobación de las metas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Conteo de habitantes en un país",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Representación de un lugar en un plano",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué son los mapas?",
+      "opciones": [
+        {
+          "opcion": "La interacción de sistemas terrestres",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Representaciones de la superficie terrestre reducidas a escalas",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Son los elementos de la naturaleza",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es la escala?",
+      "opciones": [
+        {
+          "opcion": "Proporción que existe entre las medidas reales y el tamaño en el mapa",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Concentraciones de población con actividades secundarias ",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Representaciones de la superficie terrestre",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuáles son los mapas topográficos?",
+      "opciones": [
+        {
+          "opcion": "El nivel de bienestar de la población",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Grado de escolaridad alcanzado por una sociedad",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Muestran las formas del relieve en un lugar ",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Cuáles son los mapas temáticos?",
+      "opciones": [
+        {
+          "opcion": "Muestran las formas del relieve en un lugar",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Representan diferentes características de la Naturaleza y sociedad",
+          "isCorrect": true
+        },
+        {
+          "opcion": "País con el mayor desarrollo humano",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es la contaminación?",
+      "opciones": [
+        {
+          "opcion": "Progreso económico y marginación social",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Sociedades de consumo responsable",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Generación de sustancias que afectan al medio ambiente",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es el cambio climático?",
+      "opciones": [
+        {
+          "opcion": "Se produce por un aumento en la emisión de gases que provocan el efecto invernadero",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Gasto económico innecesario",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Ahorrar el agua",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué son los desastres naturales?",
+      "opciones": [
+        {
+          "opcion": "La interacción de sistemas terrestres",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Desperdicio de recursos naturales",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Fenómenos que afectan al ser humano",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "La migración externa en México se realiza hacia…",
+      "opciones": [
+        {
+          "opcion": "Cuba",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Colombia",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Estados Unidos de América",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "Principal causa de la migración externa en México ",
+      "opciones": [
+        {
+          "opcion": "Mejor educación",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Búsqueda de mejores salarios",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Áreas agropecuarias",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "La migración interna en México se realiza principalmente del campo a: ",
+      "opciones": [
+        {
+          "opcion": "Las ciudades",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Áreas agropecuarias",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Lugares amplios para vivir",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Principal causa de la migración interna en México ",
+      "opciones": [
+        {
+          "opcion": "Variedad de especies vegetales y animales",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Búsqueda de mejores condiciones de vida",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Búsqueda de empleos con más descanso",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué es un espacio no globalizado?",
+      "opciones": [
+        {
+          "opcion": "El país con mayor  población del mundo",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Es una región del mundo",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Lugares que se caracterizan por pobreza y marginación",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Qué abarcan los aspectos culturales de los grupos humanos?",
+      "opciones": [
+        {
+          "opcion": "Variedad de especies vegetales y animales",
+          "isCorrect": false
+        },
+        {
+          "opcion": "La interacción de sistemas terrestres",
+          "isCorrect": false
+        },
+        {
+          "opcion": "La religión, costumbres, tradiciones,etc ",
+          "isCorrect": true
+        }
+      ]
+    }
+  ],
+  "ingles": [
+    {
+      "pregunta": "Bolsa",
+      "opciones": [
+        {
+          "opcion": "Bag",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Packet",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Airport",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Good Afternoon",
+      "opciones": [
+        {
+          "opcion": "Buenas tardes",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Buenas noches",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Buenos días",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Fish",
+      "opciones": [
+        {
+          "opcion": "Pescado",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Cinco",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Ensalada",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Salad",
+      "opciones": [
+        {
+          "opcion": "Ensalada",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Salado",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Sal",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Fifty",
+      "opciones": [
+        {
+          "opcion": "Cincuenta",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Quince",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Cinco",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Cup",
+      "opciones": [
+        {
+          "opcion": "Taza",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Capa",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Tetera",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Bussy",
+      "opciones": [
+        {
+          "opcion": "Ocupado",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Mandón",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Autobús",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Wife",
+      "opciones": [
+        {
+          "opcion": "Esposa",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Esposo",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Sobrino",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Hat",
+      "opciones": [
+        {
+          "opcion": "Sombrero",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Camisa",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Abrigo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Dress",
+      "opciones": [
+        {
+          "opcion": "Vestido",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Falda",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Bufanda",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Gray",
+      "opciones": [
+        {
+          "opcion": "Gris",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Verde",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Gorra",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "White",
+      "opciones": [
+        {
+          "opcion": "Blanco",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Mientras",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Escribir",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Socks",
+      "opciones": [
+        {
+          "opcion": "Calcetines",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Saco",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Descarga",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Warm",
+      "opciones": [
+        {
+          "opcion": "Cálido",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Peligro",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Alarma",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Expensive",
+      "opciones": [
+        {
+          "opcion": "Caro",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Expresión",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Emoción",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Easy",
+      "opciones": [
+        {
+          "opcion": "Fácil",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Borrar",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Era",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Pen",
+      "opciones": [
+        {
+          "opcion": "Boligráfo",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Lápiz",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Goma",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Aula",
+      "opciones": [
+        {
+          "opcion": "Classroom",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Classmates",
+          "isCorrect": false
+        },
+        {
+          "opcion": "school",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Banco",
+      "opciones": [
+        {
+          "opcion": "Bank",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Black",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Boat",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Joven",
+      "opciones": [
+        {
+          "opcion": "Young",
+          "isCorrect": true
+        },
+        {
+          "opcion": "You",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Old",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Nosotros vivimos en una ciudad grande",
+      "opciones": [
+        {
+          "opcion": "We live in a big city",
+          "isCorrect": true
+        },
+        {
+          "opcion": "We are living in a largue city",
+          "isCorrect": false
+        },
+        {
+          "opcion": "We lived in a small city",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Juntos",
+      "opciones": [
+        {
+          "opcion": "Together",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Young",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Jump",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Pequeño",
+      "opciones": [
+        {
+          "opcion": "Small",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Smart",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Cut",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Cuándo",
+      "opciones": [
+        {
+          "opcion": "When",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Where",
+          "isCorrect": false
+        },
+        {
+          "opcion": "What",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Él trabaja en una universidad",
+      "opciones": [
+        {
+          "opcion": "He works at a university",
+          "isCorrect": true
+        },
+        {
+          "opcion": "He goes in one college",
+          "isCorrect": false
+        },
+        {
+          "opcion": "He work at a university",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Él vive en Canadá",
+      "opciones": [
+        {
+          "opcion": "He lives in Canadá",
+          "isCorrect": true
+        },
+        {
+          "opcion": "He is residing in UK",
+          "isCorrect": false
+        },
+        {
+          "opcion": "He live in Canadá",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Tall",
+      "opciones": [
+        {
+          "opcion": "Alto",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Talla",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Tallo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Él usa una computadora todos los días",
+      "opciones": [
+        {
+          "opcion": "He uses a computer every day",
+          "isCorrect": true
+        },
+        {
+          "opcion": "He uses a computer all days",
+          "isCorrect": false
+        },
+        {
+          "opcion": "He uses a language every day",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Carne",
+      "opciones": [
+        {
+          "opcion": "Meat",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Medium",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Car",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Glass",
+      "opciones": [
+        {
+          "opcion": "Vaso",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Grasa",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Gafas",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Black",
+      "opciones": [
+        {
+          "opcion": "Negro",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Blanco",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Banco",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "¿Estás bien?",
+      "opciones": [
+        {
+          "opcion": "Are you OK?",
+          "isCorrect": true
+        },
+        {
+          "opcion": "You are beautiful?",
+          "isCorrect": false
+        },
+        {
+          "opcion": "You is OK?",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Enfermo",
+      "opciones": [
+        {
+          "opcion": "Sick",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Sock",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Share",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Hombre",
+      "opciones": [
+        {
+          "opcion": "Man",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Men",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Women",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Uno o dos",
+      "opciones": [
+        {
+          "opcion": "One or two",
+          "isCorrect": true
+        },
+        {
+          "opcion": "One o two",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Two or one",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Doce",
+      "opciones": [
+        {
+          "opcion": "Twelve",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Twenty",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Two",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Son las nueve",
+      "opciones": [
+        {
+          "opcion": "It's nine o'clock",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Is nine",
+          "isCorrect": false
+        },
+        {
+          "opcion": "It's ninety o'clock",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Él no trabaja los viernes",
+      "opciones": [
+        {
+          "opcion": "He does not work on Fridays",
+          "isCorrect": true
+        },
+        {
+          "opcion": "He do not work on Fridays",
+          "isCorrect": false
+        },
+        {
+          "opcion": "He no work on Fridays",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Chair",
+      "opciones": [
+        {
+          "opcion": "Silla",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Fogata",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Barato",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Cheap",
+      "opciones": [
+        {
+          "opcion": "Barato",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Papas",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Caro",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Ajedrez",
+      "opciones": [
+        {
+          "opcion": "Chess",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Cheese",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Cheap",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Fridge",
+      "opciones": [
+        {
+          "opcion": "Nevera",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Frío ",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Nieve",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Plate",
+      "opciones": [
+        {
+          "opcion": "Plato",
+          "isCorrect": true
+        },
+        {
+          "opcion": "Plata",
+          "isCorrect": false
+        },
+        {
+          "opcion": "Pan",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "pregunta": "Hay cinco escritorios pequeños",
+      "opciones": [
+        {
+          "opcion": "There are five small desks",
+          "isCorrect": true
+        },
+        {
+          "opcion": "There is five small desks",
+          "isCorrect": false
+        },
+        {
+          "opcion": "There are five smart desks",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
 }

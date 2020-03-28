@@ -20,19 +20,29 @@ class CategoriasScreen extends StatelessWidget {
       'titulo': 'Geografía',
       'color1': Color.fromRGBO(0, 142, 17, 1.0),
       'color2': Color.fromRGBO(0, 98, 18, 1.0),
-      'id': 'geografia'
+      'id': 'geografia',
+      'fondo': 'images/geografia.png'
     },
     {
       'titulo': 'Historia',
-      'color1': Color.fromRGBO(241, 0, 17, 1.0),
-      'color2': Color.fromRGBO(236, 0, 18, 1.0),
-      'id': 'historia'
+      'color1': Color.fromRGBO(141, 70, 97, 1.0),
+      'color2': Color.fromRGBO(136, 50, 68, 1.0),
+      'id': 'historia',
+      'fondo': 'images/roma.png'
     },
     {
       'titulo': 'Inglés',
       'color1': Color.fromRGBO(120, 142, 0, 1.0),
       'color2': Color.fromRGBO(100, 98, 0, 1.0),
-      'id': 'ingles'
+      'id': 'ingles',
+      'fondo': 'images/ingles.png'
+    },
+    {
+      'titulo': 'Ciencia',
+      'color1': Color.fromRGBO(40, 42, 110, 1.0),
+      'color2': Color.fromRGBO(20, 65, 90, 1.0),
+      'id': 'ciencia',
+      'fondo': 'images/ciencia.png'
     },
   ];
 
@@ -43,6 +53,7 @@ class CategoriasScreen extends StatelessWidget {
       'titulo': 'Matemáticas',
       'color1': Color.fromRGBO(241, 142, 17, 1.0),
       'color2': Color.fromRGBO(236, 98, 18, 1.0),
+      'fondo': 'images/matematicas.png',
       'id': 'matematicas'
     });
   }
@@ -207,12 +218,13 @@ class CategoriasScreen extends StatelessWidget {
                     var materia = categoria['titulo'];
                     Color color1 = categoria['color1'];
                     Color color2 = categoria['color2'];
+                    print("Fondo ${categoria['fondo']}");
                     return CardMateria(
-                      materia: materia,
-                      color1: color1,
-                      color2: color2,
-                      id: categoria['id'],
-                    );
+                        materia: materia,
+                        color1: color1,
+                        color2: color2,
+                        id: categoria['id'],
+                        fondo: categoria['fondo']);
                   }).toList(),
                 ),
               ],
@@ -354,10 +366,11 @@ class CategoriasScreen extends StatelessWidget {
 }
 
 class CardMateria extends StatelessWidget {
-  CardMateria({this.materia, this.color1, this.color2, this.id});
+  CardMateria({this.materia, this.color1, this.color2, this.id, this.fondo});
   final String materia;
   final Color color1;
   final Color color2;
+  final String fondo;
   final id;
 
   @override
@@ -388,6 +401,13 @@ class CardMateria extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Container(
+              height: 150.0,
+              child: FittedBox(
+                child: Image.asset(fondo),
+                fit: BoxFit.cover,
+              ),
+            ),
             Text(
               materia,
               style: TextStyle(
