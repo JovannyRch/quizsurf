@@ -15,6 +15,7 @@ dependencies:
   path_provider:
   flip_card: ^0.4.4
   rflutter_alert: ^1.0.3
+  vibration: ^1.2.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -23,7 +24,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.7.3"
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/icon/icon.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -38,4 +44,3 @@ flutter:
   assets:
     - images/
     - data/data.json
- 

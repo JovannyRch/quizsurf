@@ -1,23 +1,26 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:quizsurf/const/const.dart';
-import 'package:quizsurf/providers/data_provider.dart';
 import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:quizsurf/utils/utils.dart' as utils;
 import 'package:vibration/vibration.dart';
 
-class QuizScreen extends StatefulWidget {
-  final String materia;
-  QuizScreen(@required this.materia);
+enum Operaciones { suma, resta, multiplicacion, division }
+
+class MatematicasScreen extends StatefulWidget {
+  MatematicasScreen({Key key}) : super(key: key);
+
   @override
-  _QuizScreenState createState() => _QuizScreenState();
+  _MatematicasScreenState createState() => _MatematicasScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _MatematicasScreenState extends State<MatematicasScreen> {
   int segundos = 50;
-  final int tiempoInicial = 93;
+  final int tiempoInicial = 4;
   int preguntaActual = 0;
   int total = 10;
   int fallos = 0;
@@ -30,19 +33,42 @@ class _QuizScreenState extends State<QuizScreen> {
   List<Map<String, dynamic>> preguntas = [];
   String id = "";
   bool isFinJuego = false;
+  int nivel = 0;
   Timer timer;
+
+  Map<int, List<Map<String, int>>> rangos;
+
+  //Valores por defecto
+  String pregunta;
+  int operando1 = 0;
+  int operando2 = 0;
+  int cantPregXnivel = 0;
+  int contadorPreguntas = 0;
+  Operaciones operacion = Operaciones.suma;
+  Random rand = new Random();
+  List<Map<String, dynamic>> opciones = [];
+  int max = 100;
+  int min = 0;
+  int dificultad = 1;
+
   @override
   void initState() {
-    this.id = widget.materia;
     super.initState();
-    //print("LA materia es $id");
-    this.iniciarJuego();
+    rangos = utils.getRangos();
+
+    iniciarJuego();
   }
 
   void iniciarJuego() {
-    this.cargarPreguntas(this.id);
+    //Configurar maximos y min valores iniciales
+    this.min = rangos[this.nivel][this.dificultad]['min'];
+    this.max = rangos[this.nivel][this.dificultad]['max'];
+    this.cantPregXnivel = rangos[this.nivel][this.dificultad]['cantidad'];
+    this.generarPregunta();
     segundos = tiempoInicial;
+
     timer = Timer.periodic(new Duration(seconds: 1), (timer) async {
+      print("Segundo $segundos");
       if (mounted) {
         setState(() {
           contadorSegundos++;
@@ -54,6 +80,7 @@ class _QuizScreenState extends State<QuizScreen> {
       }
       if (segundos == 0) {
         timer.cancel();
+
         this.isFinJuego = true;
         bool resp = await await Alert(
           context: context,
@@ -90,7 +117,8 @@ class _QuizScreenState extends State<QuizScreen> {
           this.puntos = 0;
           this.fallos = 0;
           this.preguntaActual = 0;
-
+          this.nivel = 0;
+          this.contadorPreguntas = 0;
           this.historial.clear();
           this.indexPage = 0;
           this.contadorSegundos = 0;
@@ -107,25 +135,121 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
-  void cargarPreguntas(String materia) async {
-    final preguntas = await dataProvider.cargarPreguntas(materia);
-    for (var p in preguntas) {
-      Map<String, dynamic> preg = {
-        'pregunta': p['pregunta'],
-      };
+  void generarPregunta() {
+    //Generar valores aleatorios según el nivel
 
-      List<Map<String, dynamic>> ops = [];
-      for (var opc in p['opciones']) {
-        ops.add({'opcion': opc['opcion'], 'isCorrect': opc['isCorrect']});
-      }
-      preg['opciones'] = ops;
-      //Mezclar opciones
-      utils.shuffle(preg['opciones']);
-      this.preguntas.add(preg);
-      //this.preguntas.add(preg['pregunta']);
+    //Checar cambio de nivel
+    if (this.contadorPreguntas == this.cantPregXnivel) {
+      this.contadorPreguntas = 0;
+      this.nivel++;
+      print("Rangos");
+      print(rangos);
+      this.min = rangos[this.nivel][this.dificultad]['min'];
+      this.max = rangos[this.nivel][this.dificultad]['max'];
+      this.cantPregXnivel = rangos[this.nivel][this.dificultad]['cantidad'];
+      print("Cambio de nivel $nivel");
+      print("min: $min, max = $max, cant: $cantPregXnivel");
     }
-    //Mezlar preguntas
-    utils.shuffle(this.preguntas);
+    print("Contador: $contadorPreguntas");
+
+    this.opciones.clear();
+    operando1 = rand.nextInt(max) + min;
+    operando2 = rand.nextInt(max) + min;
+    double resultado = 0;
+    //Generar una operacion aleatoria
+    int tipoOperacion = rand.nextInt(4);
+    print("Tipo de operacion $tipoOperacion");
+    switch (tipoOperacion) {
+      case 0:
+        operacion = Operaciones.suma;
+        this.pregunta = "$operando1 + $operando2";
+        resultado = operando1.toDouble() + operando2.toDouble();
+        break;
+      case 1:
+        this.pregunta = "$operando1 - $operando2";
+        operacion = Operaciones.resta;
+        resultado = operando1.toDouble() - operando2.toDouble();
+        break;
+      case 2:
+        this.pregunta = "$operando1 x $operando2";
+        operacion = Operaciones.multiplicacion;
+        resultado = operando1.toDouble() * operando2.toDouble();
+        break;
+      case 3:
+        var aux = operando1 * operando2;
+        resultado = operando1.toDouble();
+        operando1 = aux;
+        this.pregunta = "$operando1 / $operando2";
+        operacion = Operaciones.division;
+        if (operando2 == 0) operando2 = 1;
+        resultado = operando1.toDouble() / operando2.toDouble();
+        break;
+    }
+    print("Pregunta " + this.pregunta);
+    //Generar respuestas
+    this.opciones = this.generarRespuestas(resultado);
+    //print(this.opciones);
+    setState(() {});
+
+    this.contadorPreguntas++;
+  }
+
+  // Creador de respuestas
+  //Cantidad: Cantidad de respuestas
+  List<Map<String, dynamic>> generarRespuestas(double resultado,
+      {cantidad: 2}) {
+    List<double> respuestas = [];
+    while (respuestas.length < cantidad) {
+      //Tipos de respuesta Random
+      var tipo = this.rand.nextInt(100);
+      var propuesta = resultado;
+      var resultadoStr = '$resultado';
+      int n = resultadoStr.length;
+      //print("EL valor de n $n");
+      //Suffle
+      if ((tipo >= 0 && tipo < 25) && resultadoStr.length > 1) {
+        utils.shuffle(resultadoStr.split(''));
+        propuesta = double.parse(resultadoStr);
+      }
+
+      //Acercamiento a la respuesta en un intevalo bajo
+      if (tipo >= 25 && tipo <= 60) {
+        var porcentaje = resultado ~/ 10;
+        propuesta = resultado + this.randomInRange(-porcentaje, porcentaje);
+      }
+
+      //Diferencias de 10*size
+      if (tipo > 60 && tipo <= 100) {
+        var numero = this.randomInRange(n, -n);
+        propuesta = resultado + numero * 10;
+      }
+
+      if (propuesta != resultado && !(respuestas.indexOf(propuesta) >= 0))
+        respuestas.add(propuesta);
+    }
+
+    List<Map<String, dynamic>> prev = [
+      {'opcion': "${resultado.toInt()}", 'isCorrect': true}
+    ];
+
+    //print("REspuestas: $respuestas");
+    for (var r in respuestas) {
+      //print("Add $r");
+      prev.add({'opcion': "${r.toInt()}", 'isCorrect': false});
+    }
+    utils.shuffle(prev);
+    return prev;
+  }
+
+  int randomInRange(int max, int min) {
+    if (max == 0) {
+      max = 10;
+      //print("Max es 0");
+    }
+    if (max < 0) max = max * -1;
+    if (min == max) min = min * -1;
+    //print("Un valor random entre $max y $min");
+    return min + rand.nextInt(max - min);
   }
 
   @override
@@ -163,7 +287,7 @@ class _QuizScreenState extends State<QuizScreen> {
         children: <Widget>[
           Text(
             (3 - this.contadorSegundos).toString(),
-            style: TextStyle(color: Colors.white, fontSize: 55.0),
+            style: TextStyle(color: Colors.white, fontSize: 60.0),
           ),
         ],
       ),
@@ -186,6 +310,7 @@ class _QuizScreenState extends State<QuizScreen> {
       res.add(Icon(
         Icons.close,
         color: Colors.red,
+        size: 20.0,
       ));
     }
     return res;
@@ -204,17 +329,8 @@ class _QuizScreenState extends State<QuizScreen> {
           SizedBox(
             height: 10.0,
           ),
-          preguntas.length == 0
-              ? CircularPercentIndicator(
-                  radius: 10.0,
-                )
-              : preguntaBuilder(this.preguntas[this.preguntaActual]),
-          preguntas.length == 0
-              ? CircularPercentIndicator(
-                  radius: 10.0,
-                )
-              : opcionesBuilder(
-                  this.preguntas[this.preguntaActual]['opciones']),
+          preguntaBuilder(this.pregunta),
+          opcionesBuilder(this.opciones),
           /*  botonSiguiente(), */
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -275,17 +391,19 @@ class _QuizScreenState extends State<QuizScreen> {
             .map((opcion) => GestureDetector(
                 onTap: () async {
                   if (opcion['isCorrect']) {
-                    //print("Has acertado");
+                    print("Has acertado");
                     opcion['estado'] = 2;
                     this.puntos++;
+                    this.generarPregunta();
                   } else {
-                    //print("Incorrecto");
+                    print("Incorrecto");
                     Vibration.vibrate(duration: 250);
+
                     opcion['estado'] = 3;
                     this.fallos++;
                     if (this.fallos == 3) {
                       this.isFinJuego = true;
-                      bool resp = await Alert(
+                      bool resp = await await Alert(
                         context: context,
                         type: AlertType.warning,
                         title: "Has fallado 3 veces",
@@ -322,6 +440,8 @@ class _QuizScreenState extends State<QuizScreen> {
                         this.puntos = 0;
                         this.fallos = 0;
                         this.preguntaActual = 0;
+                        this.nivel = 0;
+                        this.contadorPreguntas = 0;
                         this.historial.clear();
                         this.indexPage = 0;
                         this.contadorSegundos = 0;
@@ -330,6 +450,8 @@ class _QuizScreenState extends State<QuizScreen> {
                       } else {
                         Navigator.pop(context);
                       }
+                    } else {
+                      this.generarPregunta();
                     }
                   }
                   setState(() {});
@@ -356,15 +478,15 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  Widget preguntaBuilder(Map pregunta) {
+  Widget preguntaBuilder(String pregunta) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30.0),
       height: this.height * 0.14,
       child: Text(
-        pregunta['pregunta'],
+        pregunta,
         style: TextStyle(
           color: Colors.white,
-          fontSize: this.height * 0.04,
+          fontSize: this.height * 0.08,
           fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.center,
@@ -419,15 +541,7 @@ class _QuizScreenState extends State<QuizScreen> {
             fontSize: this.height * 0.035,
             fontWeight: FontWeight.bold,
           ),
-        ), /* 
-        Text(
-          '/ ${this.total.toString()}',
-          style: TextStyle(
-            color: Color(0xff8D94BB),
-            fontSize: this.height * 0.026,
-            fontWeight: FontWeight.bold,
-          ),
-        ), */
+        ),
       ],
     );
   }
@@ -491,6 +605,7 @@ class _OpcionWidgetState extends State<OpcionWidget> {
         child: ListTile(
           title: Text(
             widget.texto,
+            textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: alto * 0.03),
           ),
           trailing: getIcon(widget.estado),

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:quizsurf/screens/matematicas_screen.dart';
 import 'package:quizsurf/screens/quiz_screen.dart';
 import 'package:quizsurf/utils/utils.dart' as utils;
 
@@ -176,8 +177,8 @@ class CategoriasScreen extends StatelessWidget {
           FutureBuilder(
             future: utils.preguntaAleatoria(this.categoria),
             builder: (BuildContext, snapshot) {
-              print("Cargando la pregunta");
-              print(snapshot.data);
+              //print("Cargando la pregunta");
+              //print(snapshot.data);
               if (snapshot.hasData) {
                 final pregunta = snapshot.data['pregunta'];
                 final opciones = snapshot.data['opciones'];
@@ -323,7 +324,10 @@ class CardMateria extends StatelessWidget {
                 if (this.id != "matematicas") {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext) => new QuizScreen(this.id)));
-                } else {}
+                } else {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext) => new MatematicasScreen()));
+                }
               },
             ),
             Container(
