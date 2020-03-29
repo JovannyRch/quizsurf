@@ -64,10 +64,10 @@ class FichasProvider {
         : res.map((registro) => FichasModel.fromJson(registro)).toList();
   }
 
-  Future<int> update(FichasModel tajeta) async {
+  Future<int> update(FichasModel tarjeta) async {
     final db = await database;
-    final res = await db.update(tabla, tajeta.toJson(),
-        where: 'id = ?', whereArgs: [tajeta.id]);
+    final res = await db.update(tabla, tarjeta.toJson(),
+        where: 'id = ?', whereArgs: [tarjeta.id]);
     return res;
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:quizsurf/const/const.dart';
 import 'package:quizsurf/providers/data_provider.dart';
+import 'package:quizsurf/widgets/opcion_widget.dart';
 import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -10,14 +11,15 @@ import 'package:vibration/vibration.dart';
 
 class QuizScreen extends StatefulWidget {
   final String materia;
-  QuizScreen(@required this.materia);
+  final int tiempoInicial;
+  QuizScreen(this.materia, this.tiempoInicial);
   @override
   _QuizScreenState createState() => _QuizScreenState();
 }
 
 class _QuizScreenState extends State<QuizScreen> {
   int segundos = 50;
-  final int tiempoInicial = 93;
+  int tiempoInicial;
   int preguntaActual = 0;
   int total = 10;
   int fallos = 0;
@@ -33,6 +35,7 @@ class _QuizScreenState extends State<QuizScreen> {
   Timer timer;
   @override
   void initState() {
+    this.tiempoInicial = this.widget.tiempoInicial;
     this.id = widget.materia;
     super.initState();
     //print("LA materia es $id");
@@ -64,7 +67,7 @@ class _QuizScreenState extends State<QuizScreen> {
             DialogButton(
               color: kTextColor,
               child: Text(
-                "Salir",
+                "Salir 🥺",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
@@ -75,7 +78,7 @@ class _QuizScreenState extends State<QuizScreen> {
             DialogButton(
               color: kRosaColor,
               child: Text(
-                "Volver a jugar",
+                "Repetir 🤗",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
@@ -294,7 +297,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           DialogButton(
                             color: kTextColor,
                             child: Text(
-                              "Salir",
+                              "Salir 🥺",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
@@ -306,7 +309,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           DialogButton(
                             color: kRosaColor,
                             child: Text(
-                              "Volver a jugar",
+                              "Volver a jugar 🤗",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
@@ -359,7 +362,7 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget preguntaBuilder(Map pregunta) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30.0),
-      height: this.height * 0.14,
+      height: this.height * 0.21,
       child: Text(
         pregunta['pregunta'],
         style: TextStyle(
@@ -461,76 +464,5 @@ class _QuizScreenState extends State<QuizScreen> {
         )
       ],
     );
-  }
-}
-
-class OpcionWidget extends StatefulWidget {
-  String texto;
-  int estado;
-  bool isCorrect;
-  OpcionWidget({this.texto, this.estado = 1, this.isCorrect = false});
-
-  @override
-  _OpcionWidgetState createState() => _OpcionWidgetState();
-}
-
-class _OpcionWidgetState extends State<OpcionWidget> {
-  @override
-  Widget build(BuildContext context) {
-    double alto = MediaQuery.of(context).size.height;
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: Container(
-        margin: EdgeInsets.only(bottom: alto * 0.02),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            border: Border.all(
-              width: 3.0,
-              color: Color(0xFF21486A),
-            )),
-        child: ListTile(
-          title: Text(
-            widget.texto,
-            style: TextStyle(color: Colors.white, fontSize: alto * 0.03),
-          ),
-          trailing: getIcon(widget.estado),
-        ),
-      ),
-    );
-  }
-
-  getIcon(int estado) {
-    if (estado == 1) {
-      return CircleAvatar(
-        backgroundColor: Color(0xFF21486A),
-        radius: 15.0,
-        child: CircleAvatar(
-          backgroundColor: Color(0xFF252C4A),
-          radius: 12.0,
-        ),
-      );
-    }
-    if (estado == 2) {
-      return CircleAvatar(
-        backgroundColor: Colors.green,
-        radius: 15.0,
-        child: Icon(
-          Icons.check,
-          color: Colors.white,
-          size: 20.0,
-        ),
-      );
-    }
-    if (estado == 3) {
-      return CircleAvatar(
-        backgroundColor: Colors.red,
-        radius: 15.0,
-        child: Icon(
-          Icons.close,
-          color: Colors.white,
-          size: 20.0,
-        ),
-      );
-    }
   }
 }

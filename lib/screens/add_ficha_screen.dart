@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizsurf/bloc/fichas_bloc.dart';
-import 'package:quizsurf/models/categorias_model.dart';
+import 'package:quizsurf/const/const.dart';
 import 'package:quizsurf/models/fichas_model.dart';
 
 class AddFichaScreen extends StatefulWidget {
@@ -16,13 +16,14 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
   String termino = "";
   String definicion = "";
   bool isEdit = false;
-
+  TextEditingController terminoCtrl = new TextEditingController();
+  TextEditingController conceptoCtrl = new TextEditingController();
   FichasBloc fichasBloc;
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     isEdit = widget.ficha.concepto != null;
-    TextEditingController terminoCtrl = new TextEditingController();
-    TextEditingController conceptoCtrl = new TextEditingController();
     if (widget.ficha.tema != null) {
       terminoCtrl.text = widget.ficha.tema;
     }
@@ -30,8 +31,12 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
       conceptoCtrl.text = widget.ficha.concepto;
     }
     this.fichasBloc = new FichasBloc();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Row(
@@ -39,6 +44,7 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.close),
+                  iconSize: 30.0,
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -53,59 +59,63 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
                   children: <Widget>[
                     TextField(
                       controller: terminoCtrl,
+                      textCapitalization: TextCapitalization.sentences,
                       decoration: InputDecoration(
-                        hintText: 'Escriba aquí el término',
-                        labelText: "Término",
+                        hintText: 'Escribe aquí el término 😊',
+                        labelText: "Término ✏️",
                         labelStyle: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontWeight: FontWeight.bold, color: kTextColor),
                       ),
                       textAlign: TextAlign.center,
-                      onChanged: (valor) {
-                        this.termino = valor;
-                      },
                     ),
                     SizedBox(
                       height: 20.0,
                     ),
                     TextField(
                       controller: conceptoCtrl,
-                      minLines: 4,
-                      maxLines: 10,
+                      textCapitalization: TextCapitalization.sentences,
                       decoration: InputDecoration(
-                          hintText: 'Escriba aquí la definición',
-                          labelText: "Definición",
+                          hintText: 'Escribe aquí la definición 😜',
+                          labelText: "Definición 📝",
                           labelStyle: TextStyle(
                             fontWeight: FontWeight.bold,
+                            color: kTextColor,
                           )),
                       style: TextStyle(),
                       textAlign: TextAlign.center,
-                      onChanged: (valor) {
-                        this.definicion = valor;
-                      },
                     ),
                     SizedBox(
                       height: 20.0,
                     ),
                     Center(
                       child: RaisedButton(
-                        color: Colors.blue,
+                        color: kTextColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(18.0),
+                          //side: BorderSide(color: kRosaColor),
+                        ),
                         child: Text(
-                          isEdit ? 'Editar' : 'Crear',
+                          isEdit ? 'Actualizar' : 'Crear',
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
-                          //Si viene una ficha entonces es una nueva ficha
-                          if (widget.ficha == null) {
+                          //Si viene una ficha nullla entonces es una nueva ficha
+
+                          print(this.terminoCtrl.text);
+                          print(this.conceptoCtrl.text);
+                          if (!this.isEdit) {
                             this.fichasBloc.create(new FichasModel(
-                                id_categoria: this.widget.id,
-                                concepto: this.definicion,
-                                tema: this.termino));
+                                  id_categoria: this.widget.id,
+                                  concepto: this.conceptoCtrl.text,
+                                  tema: this.terminoCtrl.text,
+                                ));
                           } else {
-                            /* this.fichasBloc.(new FichasModel(
-                              id_categoria: this.widget.id,
-                              concepto: this.definicion,
-                              tema: this.termino)); */
+                            print("Actualizar");
+                            fichasBloc.edit(new FichasModel(
+                                id: this.widget.ficha.id,
+                                id_categoria: this.widget.id,
+                                concepto: this.conceptoCtrl.text,
+                                tema: this.terminoCtrl.text));
                           }
                           Navigator.pop(context);
                         },

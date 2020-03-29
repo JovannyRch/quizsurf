@@ -66,8 +66,8 @@ class CategoriasScreen extends StatelessWidget {
       prefs.setString("fechaActual", hoy);
       diaGuardado = hoy;
     }
-    print("Dia guardado: $diaGuardado");
-    print("hoy: $hoy");
+    //print("Dia guardado: $diaGuardado");
+    //print("hoy: $hoy");
     var preguntaDelDia = prefs.getString("preguntaDia");
     if (diaGuardado != hoy || preguntaDelDia == null || preguntaDelDia == "") {
       //Generar pregunta y guardar hoy  como en la variable de día guardado
@@ -110,8 +110,8 @@ class CategoriasScreen extends StatelessWidget {
     var random = new Random();
     //-1 para no incluir a la materia de matemáticas
     int pos = random.nextInt(this.categorias.length - 1);
-    print("Generando pregunta aleatoria");
-    print(pos);
+    //print("Generando pregunta aleatoria");
+    //print(pos);
     this.categoria = this.categorias[pos]['id'];
     this.nombreMateria = this.categorias[pos]['titulo'];
 
@@ -218,7 +218,7 @@ class CategoriasScreen extends StatelessWidget {
                     var materia = categoria['titulo'];
                     Color color1 = categoria['color1'];
                     Color color2 = categoria['color2'];
-                    print("Fondo ${categoria['fondo']}");
+                    //print("Fondo ${categoria['fondo']}");
                     return CardMateria(
                         materia: materia,
                         color1: color1,
@@ -454,14 +454,34 @@ class CardMateria extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(40.0),
               ),
-              onPressed: () {
-                if (this.id != "matematicas") {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext) => new QuizScreen(this.id)));
-                } else {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext) => new MatematicasScreen()));
-                }
+              onPressed: () async {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (builder) {
+                      return Container(
+                        height: alto * 0.4,
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              "Elije el tiempo ⏰",
+                              style:
+                                  TextStyle(color: kTextColor, fontSize: 30.0),
+                            ),
+                            SizedBox(height: 20.0),
+                            _opcionTiempo("5 Minutos 👶", () {
+                              this.goGame(303, context);
+                            }),
+                            _opcionTiempo("3 Minutos 😜", () {
+                              this.goGame(183, context);
+                            }),
+                            _opcionTiempo("1 Minuto 😳", () {
+                              this.goGame(63, context);
+                            }),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(40.0),
+                      );
+                    });
               },
             ),
             Container(
@@ -472,5 +492,38 @@ class CardMateria extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  ListTile _opcionTiempo(String txt, Function f) {
+    return ListTile(
+      title: RaisedButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+            side: BorderSide(color: kTextColor)),
+        onPressed: f,
+        child: Text(
+          txt,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: kTextColor,
+            fontSize: 24.0,
+          ),
+        ),
+      ),
+      onTap: () {},
+    );
+  }
+
+  void goGame(int tiempoInicial, BuildContext context) {
+    Navigator.of(context).pop();
+    if (this.id != "matematicas") {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext) => new QuizScreen(this.id, tiempoInicial)));
+    } else {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext) => new MatematicasScreen(
+                tiempoInicial: tiempoInicial,
+              )));
+    }
   }
 }

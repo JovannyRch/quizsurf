@@ -94,6 +94,7 @@ class CategoriasFichasScreen extends StatelessWidget {
                   key: UniqueKey(),
                   child: ListTile(
                     title: Text(categoria.nombre),
+                    subtitle: Text(categoria.descripcion),
                     trailing: Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       Navigator.pushNamed(context, '/fichas',
@@ -113,10 +114,18 @@ class CategoriasFichasScreen extends StatelessWidget {
                                   Navigator.of(context).pop(true);
                                   this._categoriasBloc.deleteData(categoria.id);
                                 },
-                                child: const Text("ELIMINAR")),
+                                child: const Text(
+                                  "ELIMINAR",
+                                  style: TextStyle(color: Colors.red),
+                                )),
                             FlatButton(
                               onPressed: () => Navigator.of(context).pop(false),
-                              child: const Text("CANCELAR"),
+                              child: const Text(
+                                "CANCELAR",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
                             ),
                           ],
                         );

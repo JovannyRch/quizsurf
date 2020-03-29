@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:quizsurf/const/const.dart';
+import 'package:quizsurf/widgets/opcion_widget.dart';
 import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -12,7 +13,8 @@ import 'package:vibration/vibration.dart';
 enum Operaciones { suma, resta, multiplicacion, division }
 
 class MatematicasScreen extends StatefulWidget {
-  MatematicasScreen({Key key}) : super(key: key);
+  final tiempoInicial;
+  MatematicasScreen({@required this.tiempoInicial});
 
   @override
   _MatematicasScreenState createState() => _MatematicasScreenState();
@@ -20,7 +22,7 @@ class MatematicasScreen extends StatefulWidget {
 
 class _MatematicasScreenState extends State<MatematicasScreen> {
   int segundos = 50;
-  final int tiempoInicial = 4;
+  int tiempoInicial;
   int preguntaActual = 0;
   int total = 10;
   int fallos = 0;
@@ -53,6 +55,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
 
   @override
   void initState() {
+    this.tiempoInicial = this.widget.tiempoInicial;
     super.initState();
     rangos = utils.getRangos();
 
@@ -90,7 +93,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
             DialogButton(
               color: kTextColor,
               child: Text(
-                "Salir",
+                "Salir 🥺",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
@@ -101,7 +104,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
             DialogButton(
               color: kRosaColor,
               child: Text(
-                "Volver a jugar",
+                "Volver a jugar 😎",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
@@ -402,7 +405,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
                     this.fallos++;
                     if (this.fallos == 3) {
                       this.isFinJuego = true;
-                      bool resp = await await Alert(
+                      bool resp = await Alert(
                         context: context,
                         type: AlertType.warning,
                         title: "Has fallado 3 veces",
@@ -411,7 +414,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
                           DialogButton(
                             color: kTextColor,
                             child: Text(
-                              "Salir",
+                              "Salir 🥺",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
@@ -423,7 +426,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
                           DialogButton(
                             color: kRosaColor,
                             child: Text(
-                              "Volver a jugar",
+                              "Repetir 😎",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
@@ -574,77 +577,5 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
         )
       ],
     );
-  }
-}
-
-class OpcionWidget extends StatefulWidget {
-  String texto;
-  int estado;
-  bool isCorrect;
-  OpcionWidget({this.texto, this.estado = 1, this.isCorrect = false});
-
-  @override
-  _OpcionWidgetState createState() => _OpcionWidgetState();
-}
-
-class _OpcionWidgetState extends State<OpcionWidget> {
-  @override
-  Widget build(BuildContext context) {
-    double alto = MediaQuery.of(context).size.height;
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: Container(
-        margin: EdgeInsets.only(bottom: alto * 0.02),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            border: Border.all(
-              width: 3.0,
-              color: Color(0xFF21486A),
-            )),
-        child: ListTile(
-          title: Text(
-            widget.texto,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: alto * 0.03),
-          ),
-          trailing: getIcon(widget.estado),
-        ),
-      ),
-    );
-  }
-
-  getIcon(int estado) {
-    if (estado == 1) {
-      return CircleAvatar(
-        backgroundColor: Color(0xFF21486A),
-        radius: 15.0,
-        child: CircleAvatar(
-          backgroundColor: Color(0xFF252C4A),
-          radius: 12.0,
-        ),
-      );
-    }
-    if (estado == 2) {
-      return CircleAvatar(
-        backgroundColor: Colors.green,
-        radius: 15.0,
-        child: Icon(
-          Icons.check,
-          color: Colors.white,
-          size: 20.0,
-        ),
-      );
-    }
-    if (estado == 3) {
-      return CircleAvatar(
-        backgroundColor: Colors.red,
-        radius: 15.0,
-        child: Icon(
-          Icons.close,
-          color: Colors.white,
-          size: 20.0,
-        ),
-      );
-    }
   }
 }

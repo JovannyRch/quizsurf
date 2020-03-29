@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:quizsurf/bloc/fichas_bloc.dart';
+import 'package:quizsurf/const/const.dart';
 import 'package:quizsurf/models/categorias_model.dart';
 import 'package:quizsurf/models/fichas_model.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:quizsurf/screens/add_ficha_screen.dart';
+import 'package:quizsurf/screens/test_screen.dart';
 
 class FichasScreen extends StatelessWidget {
   FichasBloc _fichasBloc;
@@ -19,7 +21,49 @@ class FichasScreen extends StatelessWidget {
             Icons.delete,
           ),
           onPressed: () {
-            _fichasBloc.deleteData(id);
+            showModalBottomSheet(
+                context: context,
+                builder: (builder) {
+                  return Container(
+                    height: 200.0,
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          "¿Realmente quieres eliminar la tarjeta? 🧐",
+                          style: TextStyle(color: kTextColor, fontSize: 17.0),
+                          textAlign: TextAlign.center,
+                        ),
+                        RaisedButton(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(18.0),
+                              side: BorderSide(color: Colors.red)),
+                          onPressed: () {
+                            _fichasBloc.deleteData(id);
+                          },
+                          child: Text(
+                            "Si",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        RaisedButton(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(18.0),
+                              side: BorderSide(color: Colors.grey)),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "No",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        )
+                      ],
+                    ),
+                    padding: EdgeInsets.all(40.0),
+                  );
+                });
           },
         ),
         IconButton(
@@ -53,12 +97,14 @@ class FichasScreen extends StatelessWidget {
     alto = MediaQuery.of(context).size.height;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: kTextColor,
         onPressed: () {
           this.showModal(context, new FichasModel());
         },
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
+        backgroundColor: kMainColor,
         title: Hero(
           tag: '${categoria.id}',
           child: Text(categoria.nombre),
@@ -80,33 +126,29 @@ class FichasScreen extends StatelessWidget {
         if (fichas.length == 0) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: this.alto * 0.10),
-              Center(
-                child: Text(
-                  "Aún no has creado ninguna tarjeta",
-                  style: TextStyle(fontSize: this.alto * 0.04),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Center(
-                child: Text(
-                  "😱",
-                  style: TextStyle(fontSize: this.alto * 0.1),
-                ),
-              ),
               SizedBox(
                 height: this.alto * 0.1,
               ),
               Center(
                 child: Text(
-                  "Agrega tu primera tarjeta 😏",
+                  "Agrega tu primera tarjeta ",
                   style: TextStyle(
-                    fontSize: this.alto * 0.05,
+                    fontSize: 30.0,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                "😏",
+                style: TextStyle(
+                  fontSize: 60.0,
+                ),
+              )
             ],
           );
         }
@@ -118,17 +160,60 @@ class FichasScreen extends StatelessWidget {
 
   ListView buildListaFichas(BuildContext context, List<FichasModel> fichas) {
     return ListView.builder(
-        itemCount: fichas.length + 1,
+        itemCount: fichas.length + 2,
         itemBuilder: (BuildContext context, int index) {
-          if (index == 0)
+          if (index == 0) {
+            return Container(
+                width: 80.0,
+                child: Column(children: [
+                  RaisedButton(
+                    color: kTextColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(18.0),
+                      //side: BorderSide(color: kRosaColor),
+                    ),
+                    child: Text(
+                      "Crear un Test 🤓",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (fichas.length < 5) {
+                        final scaffold = Scaffold.of(context);
+                        scaffold.showSnackBar(
+                          SnackBar(
+                            content: const Text(
+                                'Se necesitan 5 fichas para crear el test 🤭'),
+                          ),
+                        );
+                      } else {
+                        //Ir al test
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TestScreen(
+                                    categoriaId: categoria.id,
+                                  )),
+                        );
+                      }
+                    },
+                  ),
+                ]));
+          }
+          if (index == 1)
             return Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[Text("${fichas.length} Fichas")],
+                children: <Widget>[
+                  Text(
+                      "${fichas.length} ${fichas.length == 1 ? 'Ficha' : 'Fichas'}")
+                ],
               ),
             );
-          FichasModel ficha = fichas[index - 1];
+          FichasModel ficha = fichas[index - 2];
           print(ficha);
           return Column(
             children: <Widget>[
@@ -137,8 +222,25 @@ class FichasScreen extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 10.0),
                 child: FlipCard(
                   direction: FlipDirection.VERTICAL, // default
-                  front: FichaComponent(texto: ficha.tema),
-                  back: FichaComponent(texto: ficha.concepto),
+                  front: FichaComponent(
+                    texto: Text(
+                      ficha.tema,
+                      style: TextStyle(
+                        fontSize: alto * 0.04,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    tipo: 0,
+                  ),
+                  back: FichaComponent(
+                    texto: Text(
+                      ficha.concepto,
+                      style: TextStyle(fontSize: alto * 0.03),
+                      textAlign: TextAlign.center,
+                    ),
+                    tipo: 1,
+                  ),
                 ),
               ),
             ],
@@ -149,18 +251,17 @@ class FichasScreen extends StatelessWidget {
   void showModal(BuildContext context, FichasModel f) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: false,
       builder: (context) => AddFichaScreen(id: this.categoria.id, ficha: f),
     );
   }
 }
 
 class FichaComponent extends StatelessWidget {
-  const FichaComponent({
-    Key key,
-    @required this.texto,
-  }) : super(key: key);
-  final String texto;
-
+  const FichaComponent({Key key, @required this.texto, this.tipo})
+      : super(key: key);
+  final Text texto;
+  final int tipo;
   @override
   Widget build(BuildContext context) {
     final alto = MediaQuery.of(context).size.height;
@@ -174,21 +275,35 @@ class FichaComponent extends StatelessWidget {
         vertical: 5.0,
       ),
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            20.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              20.0,
+            ),
+            color: tipo == 1
+                ? Colors.blueGrey.withOpacity(0.1)
+                : kTextColor.withOpacity(0.2),
           ),
-          color: Colors.blueGrey.withOpacity(0.1),
-        ),
-        height: alto * 0.25,
-        child: Center(
-          child: Text(
-            texto,
-            style: TextStyle(fontSize: alto * 0.04),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
+          height: alto * 0.25,
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 10.0),
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  Text(
+                    tipo == 0 ? 'Termino' : 'Concepto',
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+              Expanded(
+                  child: Center(
+                child: texto,
+              ))
+            ],
+          )),
     );
   }
 }

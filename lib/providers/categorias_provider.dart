@@ -40,7 +40,7 @@ class CategoriasProvider {
         "FOREIGN KEY(id_categoria) REFERENCES categorias(id) ON DELETE CASCADE"
         ")",
       );
-      await db.execute(
+      /*  await db.execute(
         "CREATE TABLE records"
         "(id INTEGER PRIMARY KEY,"
         "materia_id text,"
@@ -50,7 +50,7 @@ class CategoriasProvider {
         "fallos INTEGER,"
         "aciertos INTEGER"
         ")",
-      );
+      ); */
     });
   }
 

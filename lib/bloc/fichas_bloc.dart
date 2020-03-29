@@ -54,4 +54,9 @@ class FichasBloc {
     await FichasProvider.db.insert(ficha);
     getDatos();
   }
+
+  edit(FichasModel ficha) async {
+    await FichasProvider.db.update(ficha);
+    getDatos();
+  }
 }
