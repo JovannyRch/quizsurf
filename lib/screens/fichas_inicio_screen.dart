@@ -195,6 +195,7 @@ class FichasScreen extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => TestScreen(
                                     categoriaId: categoria.id,
+                                    nombreCategoria: categoria.nombre,
                                   )),
                         );
                       }

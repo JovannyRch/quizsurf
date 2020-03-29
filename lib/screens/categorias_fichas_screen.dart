@@ -93,8 +93,17 @@ class CategoriasFichasScreen extends StatelessWidget {
                 return Dismissible(
                   key: UniqueKey(),
                   child: ListTile(
-                    title: Text(categoria.nombre),
-                    subtitle: Text(categoria.descripcion),
+                    title: Text(
+                      categoria.nombre,
+                      style: TextStyle(
+                          color: kMainColor, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      categoria.descripcion,
+                      style: TextStyle(
+                        color: kTextColor,
+                      ),
+                    ),
                     trailing: Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       Navigator.pushNamed(context, '/fichas',
