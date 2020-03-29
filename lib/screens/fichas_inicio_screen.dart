@@ -39,7 +39,9 @@ class FichasScreen extends StatelessWidget {
                               borderRadius: new BorderRadius.circular(18.0),
                               side: BorderSide(color: Colors.red)),
                           onPressed: () {
-                            _fichasBloc.deleteData(id);
+                            print("Eliminando ficha");
+                            _fichasBloc.deleteData(f.id);
+                            Navigator.of(context).pop();
                           },
                           child: Text(
                             "Si",
@@ -294,7 +296,7 @@ class FichaComponent extends StatelessWidget {
                     width: 20.0,
                   ),
                   Text(
-                    tipo == 0 ? 'Termino' : 'Concepto',
+                    tipo == 0 ? 'Palabra o ídea' : 'Definicíon',
                     textAlign: TextAlign.left,
                   ),
                 ],

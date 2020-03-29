@@ -15,10 +15,12 @@ class _AddCategoriaScreenState extends State<AddCategoriaScreen> {
   String titulo = "";
   String descripcion = "";
   CategoriasBloc categoriasBloc;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     this.categoriasBloc = new CategoriasBloc();
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(20.0),
@@ -91,11 +93,16 @@ class _AddCategoriaScreenState extends State<AddCategoriaScreen> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    print(this.titulo);
-                    print(this.descripcion);
-                    this.categoriasBloc.create(new CategoriasModel(
-                        nombre: this.titulo, descripcion: this.descripcion));
-                    Navigator.pop(context);
+                    if (this.titulo != "") {
+                      this.categoriasBloc.create(new CategoriasModel(
+                          nombre: this.titulo, descripcion: this.descripcion));
+                      Navigator.pop(context);
+                    } else {
+                      //Toast
+                      SnackBar snackBar = new SnackBar(
+                          content: new Text("Agrega el título 🙄"));
+                      _scaffoldKey.currentState.showSnackBar(snackBar);
+                    }
                   },
                   //color: kRosaColor,
                 ),

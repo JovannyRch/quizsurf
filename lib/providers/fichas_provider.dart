@@ -73,7 +73,9 @@ class FichasProvider {
 
   Future<int> delete(int id) async {
     final db = await database;
-    final res = await db.delete(tabla, where: 'id = ?', whereArgs: [id]);
+    print("Eliminando id: $id");
+    final res = await db.rawDelete("DELETE FROM $tabla where id = $id");
+    print("Res eliminacion: $res");
     return res;
   }
 

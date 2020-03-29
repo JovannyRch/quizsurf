@@ -19,6 +19,7 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
   TextEditingController terminoCtrl = new TextEditingController();
   TextEditingController conceptoCtrl = new TextEditingController();
   FichasBloc fichasBloc;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -36,6 +37,7 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -103,6 +105,18 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
 
                           print(this.terminoCtrl.text);
                           print(this.conceptoCtrl.text);
+                          if (this.terminoCtrl.text == "") {
+                            SnackBar snackBar = new SnackBar(
+                                content: new Text("Agrega el término 🙄"));
+                            _scaffoldKey.currentState.showSnackBar(snackBar);
+                            return;
+                          }
+                          if (this.conceptoCtrl.text == "") {
+                            SnackBar snackBar = new SnackBar(
+                                content: new Text("Agrega la definición 🙄"));
+                            _scaffoldKey.currentState.showSnackBar(snackBar);
+                            return;
+                          }
                           if (!this.isEdit) {
                             this.fichasBloc.create(new FichasModel(
                                   id_categoria: this.widget.id,

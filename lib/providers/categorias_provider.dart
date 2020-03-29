@@ -56,7 +56,9 @@ class CategoriasProvider {
 
   insert(CategoriasModel scan) async {
     final db = await database;
-    return await db.insert(tabla, scan.toJson());
+    var resp = await db.insert(tabla, scan.toJson());
+    //print("Resp $resp");
+    return resp;
   }
 
   Future<CategoriasModel> getById(int id) async {
@@ -68,6 +70,7 @@ class CategoriasProvider {
   Future<List<CategoriasModel>> getAll() async {
     final db = await database;
     final res = await db.query(tabla);
+
     return res.isEmpty
         ? []
         : res.map((registro) => CategoriasModel.fromJson(registro)).toList();
@@ -92,6 +95,7 @@ class CategoriasProvider {
   Future<int> delete(int id) async {
     final db = await database;
     final res = await db.delete(tabla, where: 'id = ?', whereArgs: [id]);
+    print("Res eliminacion categoria: $res");
     return res;
   }
 

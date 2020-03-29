@@ -87,10 +87,11 @@ class CategoriasFichasScreen extends StatelessWidget {
               }
 
               List<Widget> fichas = [];
-
+              print("Total de categorias  ");
+              print(snapshot.data.length);
               for (var f in snapshot.data) {
                 CategoriasModel categoria = f;
-                return Dismissible(
+                fichas.add(Dismissible(
                   key: UniqueKey(),
                   child: ListTile(
                     title: Text(
@@ -141,12 +142,7 @@ class CategoriasFichasScreen extends StatelessWidget {
                       },
                     );
                   },
-                  onDismissed: (index) {
-                    print("Eliminar");
-                    print(categoria.id);
-                    //this._categoriasBloc.deleteData(categoria.id);
-                  },
-                );
+                ));
               }
 
               return Column(
