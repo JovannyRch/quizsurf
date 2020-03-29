@@ -64,7 +64,7 @@ class _AddFichaScreenState extends State<AddFichaScreen> {
                       textCapitalization: TextCapitalization.sentences,
                       decoration: InputDecoration(
                         hintText: 'Escribe aquí el término 😊',
-                        labelText: "Término ✏️",
+                        labelText: "Término o idea ✏️",
                         labelStyle: TextStyle(
                             fontWeight: FontWeight.bold, color: kTextColor),
                       ),

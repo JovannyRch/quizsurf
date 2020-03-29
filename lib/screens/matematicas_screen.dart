@@ -93,24 +93,24 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
             DialogButton(
               color: kTextColor,
               child: Text(
-                "Salir 🥺",
+                "Salir",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
                 Navigator.pop(context, false);
               },
-              width: 120,
+              width: 140,
             ),
             DialogButton(
               color: kRosaColor,
               child: Text(
-                "Volver a jugar 😎",
+                "Reintentar",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
                 Navigator.pop(context, true);
               },
-              width: 120,
+              width: 140,
             )
           ],
         ).show();
@@ -414,7 +414,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
                           DialogButton(
                             color: kTextColor,
                             child: Text(
-                              "Salir 🥺",
+                              "Salir",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
@@ -426,7 +426,7 @@ class _MatematicasScreenState extends State<MatematicasScreen> {
                           DialogButton(
                             color: kRosaColor,
                             child: Text(
-                              "Repetir 😎",
+                              "Reintentar",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),

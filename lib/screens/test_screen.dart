@@ -55,13 +55,15 @@ class _TestScreenState extends State<TestScreen> {
   _siguientePregunta() {
     this.isCorrecto = null;
     this.indexOpcionElegida = null;
+    print("Index pregunta $indexPreguntaActual");
+    if (isUltimaPregunta) isFin = true;
     if (!isFin) {
       if (indexPreguntaActual + 1 == totalPreguntas) {
         isUltimaPregunta = true;
       }
       preguntaActual = fichas[indexPreguntaActual].tema;
       _generarOpciones();
-      if (isUltimaPregunta) isFin = true;
+
       setState(() {});
       indexPreguntaActual++;
     }
@@ -130,15 +132,17 @@ class _TestScreenState extends State<TestScreen> {
   Widget _resultados() {
     double cal =
         double.parse((10 / totalPreguntas * correctos).toStringAsFixed(2));
+    print("Total de preguntas $totalPreguntas");
+    print("Correctos $correctos");
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: alto * 0.28),
+        margin: EdgeInsets.only(top: alto * 0.18),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20.0),
         ),
         width: ancho * 0.8,
-        height: alto * 0.40,
+        height: alto * 0.60,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -258,7 +262,7 @@ class _TestScreenState extends State<TestScreen> {
           _cuerpoPregunta(),
           _opciones(),
           SizedBox(
-            height: 10.0,
+            height: alto * 0.01,
           ),
           _btnSiguiente(context),
         ],
@@ -268,8 +272,8 @@ class _TestScreenState extends State<TestScreen> {
 
   Widget _btnSiguiente(BuildContext context) {
     return Container(
-      height: 90.0,
-      margin: EdgeInsets.only(right: 10.0),
+      height: alto * 0.09,
+      margin: EdgeInsets.only(right: 10.0, top: alto * 0.03),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -282,11 +286,12 @@ class _TestScreenState extends State<TestScreen> {
             padding: EdgeInsets.all(20.0),
             color: naranja,
             child: Text(isUltimaPregunta ? "Terminar" : "Siguiente",
-                style: TextStyle(color: Colors.white, fontSize: 20.0)),
+                style: TextStyle(color: Colors.white, fontSize: alto * 0.025)),
             onPressed: () {
               if (this.indexOpcionElegida != null) {
                 if (isUltimaPregunta) {
-                  Navigator.of(context).pop();
+                  this.isFin = true;
+                  setState(() {});
                 } else {
                   this._siguientePregunta();
                 }
@@ -315,7 +320,7 @@ class _TestScreenState extends State<TestScreen> {
             "$preguntaActual",
             style: TextStyle(
               color: Color(0xFF294D77),
-              fontSize: 30.0,
+              fontSize: alto * 0.04,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.start,
@@ -369,13 +374,16 @@ class _TestScreenState extends State<TestScreen> {
         if (this.isCorrecto == null) {
           setState(() {
             this.isCorrecto = op['isCorrect'];
-            if (this.isCorrecto) this.correctos++;
+            if (this.isCorrecto) {
+              print("Es correcto! ");
+              this.correctos++;
+            }
             this.indexOpcionElegida = op['index'];
           });
         }
       },
       child: Container(
-        height: 60.0,
+        height: alto * 0.065,
         width: ancho * 0.65,
         margin: EdgeInsets.only(top: 18.0, right: 5.0, left: 5.0),
         padding: EdgeInsets.all(3.0),

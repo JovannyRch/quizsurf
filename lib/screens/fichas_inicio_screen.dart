@@ -25,7 +25,7 @@ class FichasScreen extends StatelessWidget {
                 context: context,
                 builder: (builder) {
                   return Container(
-                    height: 200.0,
+                    height: alto * 0.45,
                     child: Column(
                       children: <Widget>[
                         Text(

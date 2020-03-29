@@ -33,6 +33,7 @@ class _QuizScreenState extends State<QuizScreen> {
   String id = "";
   bool isFinJuego = false;
   Timer timer;
+  bool isTapped = false;
   @override
   void initState() {
     this.tiempoInicial = this.widget.tiempoInicial;
@@ -67,7 +68,7 @@ class _QuizScreenState extends State<QuizScreen> {
             DialogButton(
               color: kTextColor,
               child: Text(
-                "Salir 🥺",
+                "Salir",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
@@ -78,7 +79,7 @@ class _QuizScreenState extends State<QuizScreen> {
             DialogButton(
               color: kRosaColor,
               child: Text(
-                "Repetir 🤗",
+                "Reintentar",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
@@ -277,77 +278,81 @@ class _QuizScreenState extends State<QuizScreen> {
         children: opciones
             .map((opcion) => GestureDetector(
                 onTap: () async {
-                  if (opcion['isCorrect']) {
-                    //print("Has acertado");
-                    opcion['estado'] = 2;
-                    this.puntos++;
-                  } else {
-                    //print("Incorrecto");
-                    Vibration.vibrate(duration: 250);
-                    opcion['estado'] = 3;
-                    this.fallos++;
-                    if (this.fallos == 3) {
-                      this.isFinJuego = true;
-                      bool resp = await Alert(
-                        context: context,
-                        type: AlertType.warning,
-                        title: "Has fallado 3 veces",
-                        desc: "Tu puntuación $puntos",
-                        buttons: [
-                          DialogButton(
-                            color: kTextColor,
-                            child: Text(
-                              "Salir 🥺",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                  if (isTapped == false) {
+                    isTapped = true;
+                    if (opcion['isCorrect']) {
+                      //print("Has acertado");
+                      opcion['estado'] = 2;
+                      this.puntos++;
+                    } else {
+                      //print("Incorrecto");
+                      Vibration.vibrate(duration: 250);
+                      opcion['estado'] = 3;
+                      this.fallos++;
+                      if (this.fallos == 3) {
+                        this.isFinJuego = true;
+                        bool resp = await Alert(
+                          context: context,
+                          type: AlertType.warning,
+                          title: "Has fallado 3 veces",
+                          desc: "Tu puntuación $puntos",
+                          buttons: [
+                            DialogButton(
+                              color: kTextColor,
+                              child: Text(
+                                "Salir",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                              },
+                              width: 120,
                             ),
-                            onPressed: () {
-                              Navigator.pop(context, false);
-                            },
-                            width: 120,
-                          ),
-                          DialogButton(
-                            color: kRosaColor,
-                            child: Text(
-                              "Volver a jugar 🤗",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context, true);
-                            },
-                            width: 120,
-                          )
-                        ],
-                      ).show();
-                      if (resp != null && resp) {
-                        this.segundos = this.tiempoInicial;
-                        this.puntos = 0;
-                        this.fallos = 0;
-                        this.preguntaActual = 0;
-                        this.historial.clear();
-                        this.indexPage = 0;
-                        this.contadorSegundos = 0;
-                        this.isFinJuego = false;
-                        this.iniciarJuego();
-                      } else {
-                        Navigator.pop(context);
+                            DialogButton(
+                              color: kRosaColor,
+                              child: Text(
+                                "Reintentar",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context, true);
+                              },
+                              width: 120,
+                            )
+                          ],
+                        ).show();
+                        if (resp != null && resp) {
+                          this.segundos = this.tiempoInicial;
+                          this.puntos = 0;
+                          this.fallos = 0;
+                          this.preguntaActual = 0;
+                          this.historial.clear();
+                          this.indexPage = 0;
+                          this.contadorSegundos = 0;
+                          this.isFinJuego = false;
+                          this.iniciarJuego();
+                        } else {
+                          Navigator.pop(context);
+                        }
                       }
                     }
+                    setState(() {});
+                    Timer(
+                        Duration(milliseconds: 750),
+                        () => {
+                              setState(() {
+                                isTapped = false;
+                                if (this.preguntaActual + 1 ==
+                                    this.preguntas.length) {
+                                  this.preguntaActual = 0;
+                                } else {
+                                  this.preguntaActual++;
+                                }
+                              })
+                            });
                   }
-                  setState(() {});
-                  Timer(
-                      Duration(milliseconds: 750),
-                      () => {
-                            setState(() {
-                              if (this.preguntaActual + 1 ==
-                                  this.preguntas.length) {
-                                this.preguntaActual = 0;
-                              } else {
-                                this.preguntaActual++;
-                              }
-                            })
-                          });
                 },
                 child: OpcionWidget(
                   texto: opcion['opcion'],

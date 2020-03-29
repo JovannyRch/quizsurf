@@ -380,6 +380,7 @@ class CardMateria extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.0),
       height: MediaQuery.of(context).size.height * 0.5,
+      padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -411,7 +412,7 @@ class CardMateria extends StatelessWidget {
             Text(
               materia,
               style: TextStyle(
-                fontSize: alto * 0.05,
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -459,7 +460,7 @@ class CardMateria extends StatelessWidget {
                     context: context,
                     builder: (builder) {
                       return Container(
-                        height: alto * 0.4,
+                        height: alto * 0.6,
                         child: Column(
                           children: <Widget>[
                             Text(
@@ -484,10 +485,6 @@ class CardMateria extends StatelessWidget {
                     });
               },
             ),
-            Container(
-              width: double.infinity,
-              height: 40.0,
-            )
           ],
         ),
       ),
